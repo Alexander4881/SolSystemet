@@ -1,0 +1,7 @@
+Planeterne der bevæger sig, med en slider som kan gøre det hurtigere eller langsommere.
+klikke på planeterne for at få mere info, som fx navn, mass/antal jorden inde i den, bebolig, avg temparatur.
+
+labyrint, hvor man skal trække noget gennem den fra punkt A til b, c, d, osv.
+
+samle en raket, hvor den så siger/viser på et billede, hvor langt raketten ville kunne komme
+
