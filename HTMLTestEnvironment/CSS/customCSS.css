@@ -1,0 +1,7 @@
+body{
+    margin: 0;
+}
+
+.container-fluid{
+    height: calc(100vh - 56px);
+}
