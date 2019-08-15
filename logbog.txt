@@ -1,6 +1,19 @@
-09-08
+09-08 (1 dag)
 github blevet sat op, skriver til hinanden gennem discord | meh duckling (benjamin) alexander4881 (alexander)
 ideer er blevet skrevet ned og beslutted, page design er blevet lavet og beslutted
 
-12-08
+10-08 (2 dag) weekend
+10-08 (3 dag) weekend
+
+12-08 (4 dag)
 installering af server og xampp på server, opdatering af server
+
+13-08 (5 dag)
+opsæting af et Java MVC project vi af spring med et libary check med Maven
+
+14-08 (6 dag)
+opsæting og læring af Java MVC med validation og opsæting af database
+
+15-08 (7 dag)
+førdig med opsætining validation og database
+undersøgelse af three js til animations på websidet
