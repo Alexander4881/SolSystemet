@@ -1,21 +1,14 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <body>
-<form action="#" th:action="@{/}" th:object="${personForm}" method="post">
-    <table>
-        <tr>
-            <td>Name:</td>
-            <td><input type="text" th:field="*{name}" /></td>
-            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
-        </tr>
-        <tr>
-            <td>Age:</td>
-            <td><input type="text" th:field="*{age}" /></td>
-            <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
-        </tr>
-        <tr>
-            <td><button type="submit">Submit</button></td>
-        </tr>
-    </table>
-</form>
+<form:form modelAttribute="user" action="user">
+    <form:input path="name"/>
+    <form:errors path="name"/>
+    <br>
+    <form:input path="age"/>
+    <form:errors path="age"/>
+    <br>
+    <input type="submit" value="submit">
+</form:form>
 </body>
 </html>
