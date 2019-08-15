@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html>
-<body>
+
+<%@include file="layout/header.jsp"%>
+
 <form:form modelAttribute="user" action="user">
     <form:input path="name"/>
     <form:errors path="name"/>
@@ -10,5 +11,5 @@
     <br>
     <input type="submit" value="submit">
 </form:form>
-</body>
-</html>
+
+<%@include file="layout/fotter.jsp"%>

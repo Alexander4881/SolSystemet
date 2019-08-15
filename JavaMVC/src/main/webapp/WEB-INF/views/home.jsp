@@ -6,11 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html>
-<head>
-    <title>${title}</title>
-</head>
-<body>
+
+<%@include file="layout/header.jsp"%>
 <h2>${variableName}</h2>
-</body>
-</html>
+<%@include file="layout/fotter.jsp"%>
