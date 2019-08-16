@@ -2,6 +2,7 @@ body{
     margin: 0;
 }
 
-.container-fluid{
-    height: calc(100vh - 56px);
+.container-fluid,#c{
+    height: 100vh;
+    width: 100%;
 }

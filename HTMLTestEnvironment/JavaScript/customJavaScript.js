@@ -1,30 +1,100 @@
-console.log("test link to JavaScript");
+'use strict';
 
-var scene = new THREE.Scene();
-// add a canvas to the document but to the container fluid class
+/* global THREE */
 
-var fluidContaner = $(".container-fluid")[0];
+function main() {
+  const canvas = document.querySelector('#c');
+  const renderer = new THREE.WebGLRenderer({canvas});
 
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-var renderer = new THREE.WebGLRenderer();
-// set the renderer size
-renderer.setSize( $(fluidContaner).innerWidth()-17, $(fluidContaner).innerHeight() );
-fluidContaner.appendChild(renderer.domElement)
+  const fov = 45;
+  const aspect = 2;  // the canvas default
+  const near = 0.1;
+  const far = 100;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.set(0, 10, 20);
 
-var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-var cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+  const controls = new THREE.OrbitControls(camera, canvas);
+  controls.target.set(0, 5, 0);
+  controls.update();
 
-camera.position.z = 5;
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color('black');
 
-// our render animation
-function animate() {
-    requestAnimationFrame( animate );
+  {
+    const planeSize = 40;
 
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('../CSS/Objects/checker.png');
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.magFilter = THREE.NearestFilter;
+    const repeats = planeSize / 2;
+    texture.repeat.set(repeats, repeats);
 
-    renderer.render( scene, camera );
+    const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+    const planeMat = new THREE.MeshPhongMaterial({
+      map: texture,
+      side: THREE.DoubleSide,
+    });
+    const mesh = new THREE.Mesh(planeGeo, planeMat);
+    mesh.rotation.x = Math.PI * -.5;
+    scene.add(mesh);
+  }
+
+  {
+    const skyColor = 0xB1E1FF;  // light blue
+    const groundColor = 0xB97A20;  // brownish orange
+    const intensity = 1;
+    const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+    scene.add(light);
+  }
+
+  {
+    const color = 0xFFFFFF;
+    const intensity = 1;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(5, 10, 2);
+    scene.add(light);
+    scene.add(light.target);
+  }
+
+  {
+    const objLoader = new THREE.OBJLoader2();
+    objLoader.loadMtl('../CSS/3D_Objects/Earth/earth.mtl', null, (materials) => {
+      // materials.Material.side = THREE.DoubleSide;
+      objLoader.setMaterials(materials);
+      objLoader.load('../CSS/3D_Objects/Earth/earth.obj', (event) => {
+        const root = event.detail.loaderRootNode;
+        scene.add(root);
+      });
+    });
+  }
+
+  function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
+  }
+
+  function render() {
+
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    }
+
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+
+  requestAnimationFrame(render);
 }
-animate();
+
+main();
