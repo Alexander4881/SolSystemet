@@ -1,137 +1,132 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
-<!-- Active URL: https://ondras.zarovi.cz/sql/demo/ -->
-<sql>
-<datatypes db="mysql">
-	<group label="Numeric" color="rgb(238,238,170)">
-		<type label="Integer" length="0" sql="INTEGER" quote=""/>
-	 	<type label="TINYINT" length="0" sql="TINYINT" quote=""/>
-	 	<type label="SMALLINT" length="0" sql="SMALLINT" quote=""/>
-	 	<type label="MEDIUMINT" length="0" sql="MEDIUMINT" quote=""/>
-	 	<type label="INT" length="0" sql="INT" quote=""/>
-		<type label="BIGINT" length="0" sql="BIGINT" quote=""/>
-		<type label="Decimal" length="1" sql="DECIMAL" re="DEC" quote=""/>
-		<type label="Single precision" length="0" sql="FLOAT" quote=""/>
-		<type label="Double precision" length="0" sql="DOUBLE" re="DOUBLE" quote=""/>
-	</group>
+-- ---
+-- Globals
+-- ---
 
-	<group label="Character" color="rgb(255,200,200)">
-		<type label="Char" length="1" sql="CHAR" quote="'"/>
-		<type label="Varchar" length="1" sql="VARCHAR" quote="'"/>
-		<type label="Text" length="0" sql="MEDIUMTEXT" re="TEXT" quote="'"/>
-		<type label="Binary" length="1" sql="BINARY" quote="'"/>
-		<type label="Varbinary" length="1" sql="VARBINARY" quote="'"/>
-		<type label="BLOB" length="0" sql="BLOB" re="BLOB" quote="'"/>
-	</group>
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
 
-	<group label="Date &amp; Time" color="rgb(200,255,200)">
-		<type label="Date" length="0" sql="DATE" quote="'"/>
-		<type label="Time" length="0" sql="TIME" quote="'"/>
-		<type label="Datetime" length="0" sql="DATETIME" quote="'"/>
-		<type label="Year" length="0" sql="YEAR" quote=""/>
-		<type label="Timestamp" length="0" sql="TIMESTAMP" quote="'"/>
-	</group>
-	
-	<group label="Miscellaneous" color="rgb(200,200,255)">
-		<type label="ENUM" length="1" sql="ENUM" quote=""/>
-		<type label="SET" length="1" sql="SET" quote=""/>
-		<type label="Bit" length="0" sql="bit" quote=""/>
-	</group>
-</datatypes><table x="271" y="136" name="Planet">
-<row name="PlanetName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default></row>
-<row name="TypeName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default><relation table="PlanetType" row="TypeName" />
-</row>
-<key type="PRIMARY" name="">
-<part>PlanetName</part>
-</key>
-</table>
-<table x="23" y="148" name="PlanetType">
-<row name="TypeName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default></row>
-<row name="Desciption" null="0" autoincrement="0">
-<datatype>MEDIUMTEXT</datatype>
-<default>'NULL'</default></row>
-<key type="PRIMARY" name="">
-<part>TypeName</part>
-</key>
-</table>
-<table x="443" y="133" name="Moons">
-<row name="MoonName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default></row>
-<row name="PlanetName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default><relation table="Planet" row="PlanetName" />
-</row>
-<key type="PRIMARY" name="">
-<part>MoonName</part>
-</key>
-</table>
-<table x="103" y="286" name="MassDirCir">
-<row name="Name" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default><relation table="Planet" row="PlanetName" />
-<relation table="Moons" row="MoonName" />
-</row>
-<row name="Mass" null="0" autoincrement="0">
-<datatype>DOUBLE</datatype>
-<default>NULL</default></row>
-<row name="MassName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default><relation table="MassMesurement" row="MassName" />
-</row>
-<row name="Circumference" null="0" autoincrement="0">
-<datatype>DOUBLE</datatype>
-<default>NULL</default></row>
-<row name="DistanceName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default><relation table="DistanceMesurement" row="DistanceName" />
-<relation table="DistanceMesurement" row="DistanceName" />
-</row>
-<row name="Diameter" null="0" autoincrement="0">
-<datatype>DOUBLE</datatype>
-<default>NULL</default></row>
-<row name="DistanceName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default></row>
-<row name="Description" null="0" autoincrement="0">
-<datatype>MEDIUMTEXT</datatype>
-<default>'NULL'</default></row>
-<key type="PRIMARY" name="">
-<part>Name</part>
-</key>
-</table>
-<table x="356" y="269" name="MassMesurement">
-<row name="MassName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default></row>
-<row name="FullMassName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default></row>
-<row name="Description" null="0" autoincrement="0">
-<datatype>MEDIUMTEXT</datatype>
-<default>'NULL'</default></row>
-<key type="PRIMARY" name="">
-<part>MassName</part>
-</key>
-</table>
-<table x="306" y="428" name="DistanceMesurement">
-<row name="DistanceName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default></row>
-<row name="FullDistanceName" null="0" autoincrement="0">
-<datatype>VARCHAR(255)</datatype>
-<default>'NULL'</default></row>
-<row name="Description" null="0" autoincrement="0">
-<datatype>MEDIUMTEXT</datatype>
-<default>'NULL'</default></row>
-<key type="PRIMARY" name="">
-<part>DistanceName</part>
-</key>
-</table>
-</sql>
+-- ---
+-- Table 'Planet'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `Planet`;
+		
+CREATE TABLE `Planet` (
+  `PlanetName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `TypeName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`PlanetName`)
+);
+
+-- ---
+-- Table 'PlanetType'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `PlanetType`;
+		
+CREATE TABLE `PlanetType` (
+  `TypeName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Desciption` MEDIUMTEXT NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`TypeName`)
+);
+
+-- ---
+-- Table 'Moons'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `Moons`;
+		
+CREATE TABLE `Moons` (
+  `MoonName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `PlanetName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`MoonName`)
+);
+
+-- ---
+-- Table 'MassDirCir'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `MassDirCir`;
+		
+CREATE TABLE `MassDirCir` (
+  `Name` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Mass` DOUBLE NOT NULL DEFAULT NULL,
+  `MassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Circumference` DOUBLE NOT NULL DEFAULT NULL,
+  `DistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Diameter` DOUBLE NOT NULL DEFAULT NULL,
+  `DistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Description` MEDIUMTEXT NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`Name`)
+);
+
+-- ---
+-- Table 'MassMesurement'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `MassMesurement`;
+		
+CREATE TABLE `MassMesurement` (
+  `MassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `FullMassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Description` MEDIUMTEXT NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`MassName`)
+);
+
+-- ---
+-- Table 'DistanceMesurement'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `DistanceMesurement`;
+		
+CREATE TABLE `DistanceMesurement` (
+  `DistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `FullDistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Description` MEDIUMTEXT NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`DistanceName`)
+);
+
+-- ---
+-- Foreign Keys 
+-- ---
+
+ALTER TABLE `Planet` ADD FOREIGN KEY (TypeName) REFERENCES `PlanetType` (`TypeName`);
+ALTER TABLE `Moons` ADD FOREIGN KEY (PlanetName) REFERENCES `Planet` (`PlanetName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (Name) REFERENCES `Planet` (`PlanetName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (Name) REFERENCES `Moons` (`MoonName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (MassName) REFERENCES `MassMesurement` (`MassName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (DistanceName) REFERENCES `DistanceMesurement` (`DistanceName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (DistanceName) REFERENCES `DistanceMesurement` (`DistanceName`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `Planet` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `PlanetType` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `Moons` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `MassDirCir` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `MassMesurement` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `DistanceMesurement` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `Planet` (`PlanetName`,`TypeName`) VALUES
+-- ('','');
+-- INSERT INTO `PlanetType` (`TypeName`,`Desciption`) VALUES
+-- ('','');
+-- INSERT INTO `Moons` (`MoonName`,`PlanetName`) VALUES
+-- ('','');
+-- INSERT INTO `MassDirCir` (`Name`,`Mass`,`MassName`,`Circumference`,`DistanceName`,`Diameter`,`DistanceName`,`Description`) VALUES
+-- ('','','','','','','','');
+-- INSERT INTO `MassMesurement` (`MassName`,`FullMassName`,`Description`) VALUES
+-- ('','','');
+-- INSERT INTO `DistanceMesurement` (`DistanceName`,`FullDistanceName`,`Description`) VALUES
+-- ('','','');
