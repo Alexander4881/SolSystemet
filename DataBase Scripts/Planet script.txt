@@ -1,0 +1,39 @@
+INSERT INTO planet (planetname, typename)
+VALUES ('Solen', 
+'Sol');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Merkur',
+'Solid');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Venus',
+'Solid');
+
+INSERT INTO planet (planetname, typename) 
+VALUES ('Jorden', 
+'Solid');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Mars',
+'Solid');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Jupiter',
+'Gas');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Saturn',
+'Gas');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Uranus',
+'Gas');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Neptun',
+'Gas');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Pluto',
+'Dværgplanet');
