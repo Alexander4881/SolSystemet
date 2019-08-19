@@ -1,0 +1,14 @@
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('mm', 'milimeter', '100mm = 1cm');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('cm', 'centimeter', '100cm = 1m');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('m', 'meter', '1000m = 1km');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('km', 'kilometer', '9,5km = 1ly');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('ly', 'lysår', 'pas');
