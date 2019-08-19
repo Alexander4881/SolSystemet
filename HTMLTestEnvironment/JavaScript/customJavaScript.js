@@ -2,6 +2,11 @@
 
 /* global THREE */
 
+var earth;
+const scene = new THREE.Scene();
+var tween;
+var temp = false;
+
 function main() {
   const canvas = document.querySelector('#c');
   const renderer = new THREE.WebGLRenderer({canvas});
@@ -17,7 +22,6 @@ function main() {
   controls.target.set(0, 5, 0);
   controls.update();
 
-  const scene = new THREE.Scene();
   scene.background = new THREE.Color('black');
 
   {
@@ -60,14 +64,23 @@ function main() {
 
   {
     const objLoader = new THREE.OBJLoader2();
-    objLoader.loadMtl('../CSS/3D_Objects/Earth/earth.mtl', null, (materials) => {
+    objLoader.loadMtl('../CSS/3D_Objects/test-earth.mtl', null, (materials) => {
       // materials.Material.side = THREE.DoubleSide;
       objLoader.setMaterials(materials);
-      objLoader.load('../CSS/3D_Objects/Earth/earth.obj', (event) => {
+      objLoader.load('../CSS/3D_Objects/test-earth.obj', (event) => {
         const root = event.detail.loaderRootNode;
-        scene.add(root);
+        earth = root;
+        scene.add(earth);
       });
     });
+
+    // const gltfLoader = new THREE.GLTFLoader();
+    // gltfLoader.load('../CSS/3D_Objects/EarthGLTF.gltf', (gltf) => {
+    //   const root = gltf.scene;
+    //   earth = root;
+    //   scene.add(root);
+    //   console.log(scene.getObjectByName( "water" ));
+    // });
   }
 
   function resizeRendererToDisplaySize(renderer) {
@@ -81,12 +94,23 @@ function main() {
     return needResize;
   }
 
-  function render() {
+  function render(time) {
 
     if (resizeRendererToDisplaySize(renderer)) {
       const canvas = renderer.domElement;
+      
+      
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
+
+      // if(temp){
+      //   tween = new TWEEN.Tween(scene.children[4].children[0].material[0].color)
+      //       .to({r: 0, g: 25, b: 155}, 2000)
+      //       .easing(TWEEN.Easing.Quartic.In)
+      //       .start();
+      //   temp=false;
+      // }
+      // if(tween) tween.update(time);
     }
 
     renderer.render(scene, camera);
@@ -98,3 +122,20 @@ function main() {
 }
 
 main();
+
+
+
+
+var onKeyDown = function(event) {
+  if (event.keyCode == 67) { // when 'c' is pressed
+
+    // scene.Children.material.color.setHex(0xff0000); // there is also setHSV and setRGB
+    temp = true;
+    // tween = new TWEEN.Tween( scene.children[4].children[0].material[0].color ).to( { r: 255, g: 100, b: 100 }, 5000 ).start();
+    
+    // scene.children[4].children[0].material[0].color = new THREE.Color( 0xff0000 );
+    console.log(scene.children[4].children[0].material[0].color);
+
+  }
+};
+document.addEventListener('keydown', onKeyDown, false);
