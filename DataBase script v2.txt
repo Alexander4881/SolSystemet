@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `PlanetType`;
 		
 CREATE TABLE `PlanetType` (
   `TypeName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
-  `PTDesciption` MEDIUMTEXT NOT NULL ,
+  `PTDescription` MEDIUMTEXT NOT NULL ,
   PRIMARY KEY (`TypeName`)
 );
 
