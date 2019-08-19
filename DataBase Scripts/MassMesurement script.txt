@@ -1,0 +1,14 @@
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('mm3', 'kubikmilimeter', 'milimeter i tredje');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('cm3', 'kubikcentimeter', 'centimeter i tredje');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('m3', 'kubikmeter', 'meter i tredje');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('km3', 'kubikkilometer', 'kilometer i tredje');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('ly3', 'kubiklysår', 'lysår i tredje');
