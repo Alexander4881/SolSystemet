@@ -73,14 +73,6 @@ function main() {
         scene.add(earth);
       });
     });
-
-    // const gltfLoader = new THREE.GLTFLoader();
-    // gltfLoader.load('../CSS/3D_Objects/EarthGLTF.gltf', (gltf) => {
-    //   const root = gltf.scene;
-    //   earth = root;
-    //   scene.add(root);
-    //   console.log(scene.getObjectByName( "water" ));
-    // });
   }
 
   function resizeRendererToDisplaySize(renderer) {
@@ -102,20 +94,24 @@ function main() {
       
       camera.aspect = canvas.clientWidth / canvas.clientHeight;
       camera.updateProjectionMatrix();
-
-      // if(temp){
-      //   tween = new TWEEN.Tween(scene.children[4].children[0].material[0].color)
-      //       .to({r: 0, g: 25, b: 155}, 2000)
-      //       .easing(TWEEN.Easing.Quartic.In)
-      //       .start();
-      //   temp=false;
-      // }
-      // if(tween) tween.update(time);
     }
+
+
+    if(temp){
+        tween = new TWEEN.Tween(scene.children[4].children[0].material[0].color)
+            .to({r: 0, g: 25, b: 155}, 2000)
+            .easing(TWEEN.Easing.Quartic.In)
+            .start();
+        temp=false;
+        console.log("start color animation");
+      }
+
+      if(tween) tween.update(time);
 
     renderer.render(scene, camera);
 
     requestAnimationFrame(render);
+
   }
 
   requestAnimationFrame(render);
@@ -128,12 +124,7 @@ main();
 
 var onKeyDown = function(event) {
   if (event.keyCode == 67) { // when 'c' is pressed
-
-    // scene.Children.material.color.setHex(0xff0000); // there is also setHSV and setRGB
     temp = true;
-    // tween = new TWEEN.Tween( scene.children[4].children[0].material[0].color ).to( { r: 255, g: 100, b: 100 }, 5000 ).start();
-    
-    // scene.children[4].children[0].material[0].color = new THREE.Color( 0xff0000 );
     console.log(scene.children[4].children[0].material[0].color);
 
   }
