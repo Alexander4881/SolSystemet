@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `PlanetType`;
 		
 CREATE TABLE `PlanetType` (
   `TypeName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
-  `Desciption` MEDIUMTEXT NOT NULL ,
+  `PTDesciption` MEDIUMTEXT NOT NULL ,
   PRIMARY KEY (`TypeName`)
 );
 
@@ -59,7 +59,7 @@ CREATE TABLE `MassDirCir` (
   `CDistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
   `Diameter` DOUBLE NOT NULL DEFAULT 0.00,
   `DDistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
-  `Description` MEDIUMTEXT NOT NULL ,
+  `MDCDescription` MEDIUMTEXT NOT NULL ,
   PRIMARY KEY (`Name`)
 );
 
@@ -73,7 +73,7 @@ DROP TABLE IF EXISTS `MassMesurement`;
 CREATE TABLE `MassMesurement` (
   `MassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
   `FullMassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
-  `Description` MEDIUMTEXT NOT NULL ,
+  `MMDescription` MEDIUMTEXT NOT NULL ,
   PRIMARY KEY (`MassName`)
 );
 
@@ -87,7 +87,7 @@ DROP TABLE IF EXISTS `DistanceMesurement`;
 CREATE TABLE `DistanceMesurement` (
   `DistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
   `FullDistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
-  `Description` MEDIUMTEXT NOT NULL ,
+  `DMDescription` MEDIUMTEXT NOT NULL ,
   PRIMARY KEY (`DistanceName`)
 );
 
