@@ -52,7 +52,7 @@ CREATE TABLE `Moons` (
 DROP TABLE IF EXISTS `MassDirCir`;
 		
 CREATE TABLE `MassDirCir` (
-  `ObjectName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `PlanetName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
   `Mass` DOUBLE NOT NULL DEFAULT 0.00,
   `MassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
   `Circumference` DOUBLE NOT NULL DEFAULT 0.00,
@@ -60,7 +60,7 @@ CREATE TABLE `MassDirCir` (
   `Diameter` DOUBLE NOT NULL DEFAULT 0.00,
   `DDistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
   `MDCDescription` MEDIUMTEXT NOT NULL ,
-  PRIMARY KEY (`ObjectName`)
+  PRIMARY KEY (`PlanetName`)
 );
 
 -- ---
@@ -97,8 +97,7 @@ CREATE TABLE `DistanceMesurement` (
 
 ALTER TABLE `Planet` ADD FOREIGN KEY (TypeName) REFERENCES `PlanetType` (`TypeName`);
 ALTER TABLE `Moons` ADD FOREIGN KEY (PlanetName) REFERENCES `Planet` (`PlanetName`);
-ALTER TABLE `MassDirCir` ADD FOREIGN KEY (ObjectName) REFERENCES `Planet` (`PlanetName`);
-ALTER TABLE `MassDirCir` ADD FOREIGN KEY (ObjectName) REFERENCES `Moons` (`MoonName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (PlanetName) REFERENCES `Planet` (`PlanetName`);
 ALTER TABLE `MassDirCir` ADD FOREIGN KEY (MassName) REFERENCES `MassMesurement` (`MassName`);
 ALTER TABLE `MassDirCir` ADD FOREIGN KEY (CDistanceName) REFERENCES `DistanceMesurement` (`DistanceName`);
 ALTER TABLE `MassDirCir` ADD FOREIGN KEY (DDistanceName) REFERENCES `DistanceMesurement` (`DistanceName`);
@@ -727,3 +726,83 @@ VALUES ('Nix', 'Pluto');
 
 INSERT INTO moons (moonname, planetname)
 VALUES ('Hydra', 'Pluto');
+
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Solen',
+'1409000000000000000', 'km3',
+'4379000', 'km',
+'1391000', 'km',
+'Hvis man gik lige igennem solen, er der 1.391.000km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 4.379.000km');
+
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Merkur',
+'60830000000', 'km3',
+'15329', 'km',
+'4880', 'km',
+'Hvis man gik lige igennem merkur, er der 4.880km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 15.329km');
+ 
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Venus',
+'928430000000', 'km3',
+'38025', 'km',
+'12104', 'km',
+'Hvis man gik lige igennem venus, er der 12.104km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 38.025km');
+ 
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Jorden',
+'1083210000000', 'km3',
+'40075', 'km',
+'12742', 'km',
+'Hvis man gik lige igennem Jorden, er der 12.742km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 40.075km');
+ 
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Mars',
+'163180000000', 'km3',
+'21344', 'km',
+'6779', 'km',
+'Hvis man gik lige igennem Mars, er der 6.779km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 21.344km');
+ 
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Jupiter',
+'1431280000000000', 'km3',
+'439264', 'km',
+'139820', 'km',
+'Hvis man gik lige igennem Jupiter, er der 139.820km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 439.264km');
+ 
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Saturn',
+'827130000000000', 'km3',
+'378675', 'km',
+'116460', 'km',
+'Hvis man gik lige igennem Saturn, er der 116.460km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 378.675km');
+ 
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Uranus',
+'68330000000000', 'km3',
+'160590', 'km',
+'50724', 'km',
+'Hvis man gik lige igennem uranus, er der 50.724km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 160.590km');
+ 
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Neptun',
+'62540000000000', 'km3',
+'155600', 'km',
+'49244', 'km',
+'Hvis man gik lige igennem neptun, er der 49.244km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 155.600km');
+ 
+INSERT INTO massdircir (planetname, mass, massname, circumference, cdistancename, diameter, ddistancename, mdcdescription)
+VALUES ('Pluto',
+'7150000000', 'km3',
+'7232', 'km',
+'2376', 'km',
+'Hvis man gik lige igennem pluto, er der 2.376km fra overflade til overflade,
+ hvis man gik i en lige linje, hele vejen rundt om månen, så er der 7.232km');
