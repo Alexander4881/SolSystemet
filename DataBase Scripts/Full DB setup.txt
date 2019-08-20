@@ -1,0 +1,729 @@
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'Planet'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `Planet`;
+		
+CREATE TABLE `Planet` (
+  `PlanetName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `TypeName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`PlanetName`)
+);
+
+-- ---
+-- Table 'PlanetType'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `PlanetType`;
+		
+CREATE TABLE `PlanetType` (
+  `TypeName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `PTDescription` MEDIUMTEXT NOT NULL ,
+  PRIMARY KEY (`TypeName`)
+);
+
+-- ---
+-- Table 'Moons'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `Moons`;
+		
+CREATE TABLE `Moons` (
+  `MoonName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `PlanetName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`MoonName`)
+);
+
+-- ---
+-- Table 'MassDirCir'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `MassDirCir`;
+		
+CREATE TABLE `MassDirCir` (
+  `ObjectName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Mass` DOUBLE NOT NULL DEFAULT 0.00,
+  `MassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Circumference` DOUBLE NOT NULL DEFAULT 0.00,
+  `CDistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Diameter` DOUBLE NOT NULL DEFAULT 0.00,
+  `DDistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `MDCDescription` MEDIUMTEXT NOT NULL ,
+  PRIMARY KEY (`ObjectName`)
+);
+
+-- ---
+-- Table 'MassMesurement'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `MassMesurement`;
+		
+CREATE TABLE `MassMesurement` (
+  `MassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `FullMassName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `MMDescription` MEDIUMTEXT NOT NULL ,
+  PRIMARY KEY (`MassName`)
+);
+
+-- ---
+-- Table 'DistanceMesurement'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `DistanceMesurement`;
+		
+CREATE TABLE `DistanceMesurement` (
+  `DistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `FullDistanceName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `DMDescription` MEDIUMTEXT NOT NULL ,
+  PRIMARY KEY (`DistanceName`)
+);
+
+-- ---
+-- Foreign Keys 
+-- ---
+
+ALTER TABLE `Planet` ADD FOREIGN KEY (TypeName) REFERENCES `PlanetType` (`TypeName`);
+ALTER TABLE `Moons` ADD FOREIGN KEY (PlanetName) REFERENCES `Planet` (`PlanetName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (ObjectName) REFERENCES `Planet` (`PlanetName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (ObjectName) REFERENCES `Moons` (`MoonName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (MassName) REFERENCES `MassMesurement` (`MassName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (CDistanceName) REFERENCES `DistanceMesurement` (`DistanceName`);
+ALTER TABLE `MassDirCir` ADD FOREIGN KEY (DDistanceName) REFERENCES `DistanceMesurement` (`DistanceName`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `Planet` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `PlanetType` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `Moons` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `MassDirCir` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `MassMesurement` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `DistanceMesurement` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `Planet` (`PlanetName`,`TypeName`) VALUES
+-- ('','');
+-- INSERT INTO `PlanetType` (`TypeName`,`Desciption`) VALUES
+-- ('','');
+-- INSERT INTO `Moons` (`MoonName`,`PlanetName`) VALUES
+-- ('','');
+-- INSERT INTO `MassDirCir` (`Name`,`Mass`,`MassName`,`Circumference`,`DistanceName`,`Diameter`,`DistanceName`,`Description`) VALUES
+-- ('','','','','','','','');
+-- INSERT INTO `MassMesurement` (`MassName`,`FullMassName`,`Description`) VALUES
+-- ('','','');
+-- INSERT INTO `DistanceMesurement` (`DistanceName`,`FullDistanceName`,`Description`) VALUES
+-- ('','','');
+
+INSERT INTO planettype (planettype.TypeName, planettype.PTDescription)
+VALUES
+('Sol',
+'En kæmpe ildkugle som der rotere planeter rundt om, også kendt som en stjerne');
+
+INSERT INTO planettype (planettype.TypeName, planettype.PTDescription)
+VALUES
+('Gas',
+'En planet som består af rent gas, der er ikke nogen fysisk overflade');
+
+INSERT INTO planettype (planettype.TypeName, planettype.PTDescription)
+VALUES
+('Solid',
+'En normal planet som vi kender, ligesom jorden, med solid overflade som man kan gå på');
+
+INSERT INTO planettype (planettype.TypeName, planettype.PTDescription)
+VALUES
+('Dværgplanet',
+'En planet som er meget lille, mindre en mange måner, men som stadig rotere rundt om solen');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('mm', 'milimeter', '100mm = 1cm');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('cm', 'centimeter', '100cm = 1m');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('m', 'meter', '1000m = 1km');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('km', 'kilometer', '9,5km = 1ly');
+
+INSERT INTO distancemesurement (distancename, fulldistancename, dmdescription)
+VALUES ('ly', 'lysår', 'pas');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('mm3', 'kubikmilimeter', 'milimeter i tredje');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('cm3', 'kubikcentimeter', 'centimeter i tredje');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('m3', 'kubikmeter', 'meter i tredje');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('km3', 'kubikkilometer', 'kilometer i tredje');
+
+INSERT INTO massmesurement (massname, fullmassname, mmdescription)
+VALUES ('ly3', 'kubiklysår', 'lysår i tredje');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Solen', 
+'Sol');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Merkur',
+'Solid');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Venus',
+'Solid');
+
+INSERT INTO planet (planetname, typename) 
+VALUES ('Jorden', 
+'Solid');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Mars',
+'Solid');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Jupiter',
+'Gas');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Saturn',
+'Gas');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Uranus',
+'Gas');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Neptun',
+'Gas');
+
+INSERT INTO planet (planetname, typename)
+VALUES ('Pluto',
+'Dværgplanet');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Månen', 'Jorden');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Deimos', 'Mars');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Phobos', 'Mars');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Adrastea', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Aitne', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Amalthea', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Ananke', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Aoede', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Arche', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Autonoe', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Callisto', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Carme', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Callirrhoe', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Carpo', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Chaldene', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Cyllene', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Elara', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Erinome', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Euanthe', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Eukelade', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Euporie', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Europa', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Eurydome', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Ganymede', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Harpalyke', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Hegemone', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Helike', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Hermippe', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Himalia', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Io', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Iocaste', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Isonoe', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Kale', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Kallichore', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Kalyke', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Kore', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Leda', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Lysithea', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Magaclite', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Metis', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Mneme', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Orthosie', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Pasiphae', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Pasithee', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Praxidike', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Sinope', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Sponde', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2000 J11', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J2', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J3', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J4', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J5', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J9', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J10', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J12', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J15', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J16', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J17', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J18', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J19', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2003 J23', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Taygete', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Thebe', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Thelxinoe', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Themisto', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Thyone', 'Jupiter');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Aegir', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Albiorix', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Anthe', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Atlas', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Bebhionn', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Bergelmir', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Bestla', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Calypso', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Daphnis', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Dione', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Enceladus', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Epimetheus', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Erriapo', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Farbauti', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Fenrir', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Fornjot', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Greip', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Hati', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Helene', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Hyperion', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Hyrokkin', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Iapetus', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Ijiraq', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Janus', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Jarnsaxa', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Kari', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Kiviuq', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Loge', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Methone', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Mimas', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Mundilfari', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Narvi', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Paaliaq', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Pallene', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Pan', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Pandora', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Phoebe', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Polydeuces', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Prometheus', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Rhea', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Siarnaq', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Skathi', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Skoll', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Surtur', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Suttungr', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2004 S7', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2004 S12', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2004 S13', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2004 S17', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2006 S1', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2006 S3', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2007 S2', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('S/2007 S3', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Tarqeq', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Tarvos', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Telesto', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Tethys', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Thrymr', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Titan', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Ymir', 'Saturn');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Ariel', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Belinda', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Bianca', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Caliban', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Cordelia', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Cressida', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Cupid', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Desdemona', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Ferdinand', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Francisco', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Juliet', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Mab', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Margaret', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Miranda', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Oberon', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Ophelia', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Perdita', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Portia', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Prospero', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Puck', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Rosalind', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Setebos', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Stephano', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Sycorax', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Titania', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Trinculo', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Umbriel', 'Uranus');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Despina', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Galatea', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Halimede', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Larissa', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Laomedeia', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Naiad', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Nereid', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Neso', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Proteus', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Psamathe', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Sao', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Thalassa', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Triton', 'Neptun');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Charon', 'Pluto');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Nix', 'Pluto');
+
+INSERT INTO moons (moonname, planetname)
+VALUES ('Hydra', 'Pluto');
