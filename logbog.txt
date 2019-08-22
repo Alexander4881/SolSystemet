@@ -33,3 +33,8 @@ database er færdig og har data i sig, script til at sætte hele databasen er lave
 21-08 (13)
 alexander fortsætter på 3d models og benjamin kigger med, benjamin begynder på at lave labyrint
 
+22-08 (14)
+labyrint js er blevet "færdigt", det mangler bare at have punkter som man skal frem til, og at kunne hente forskellige maps fra databasen
+opprettelse af 3d objecter med rotation og og en linje der viser dens orbit, der skal sættes en ambiant lys på solen, og så vil jeg gå vidre til en planet slider.
+samt zoom ind på en planet og dens orbit ved selection......
+
