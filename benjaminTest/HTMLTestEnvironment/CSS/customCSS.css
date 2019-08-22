@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+}
+
+.container-fluid{
+    height: calc(100vh - 56px);
+}
+
+.boxdiv {
+    background-color: red;
+    position: absolute;
+    top: .5px;
+    left: .5px;
+    width: 15px;
+    height: 15px;
+}
+
+.circlebg{
+    background-image: image("../Picture/TheSun.png");
+    fill: red;
+}
+
+#a{
+    position: absolute;
+    float: right;
+    padding: 2em;
+    background-color: tomato;
+}
