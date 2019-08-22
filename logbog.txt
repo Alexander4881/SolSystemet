@@ -30,3 +30,6 @@ database begynder at blive sat op og alexander fortsætter på 3d planeter
 20-08 (12)
 database er færdig og har data i sig, script til at sætte hele databasen er lavet og alexander fortsætter på 3d planeter og path following
 
+21-08 (13)
+alexander fortsætter på 3d models og benjamin kigger med, benjamin begynder på at lave labyrint
+
