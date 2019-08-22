@@ -3,7 +3,7 @@ github blevet sat op, skriver til hinanden gennem discord | meh duckling (benjam
 ideer er blevet skrevet ned og beslutted, page design er blevet lavet og beslutted
 
 10-08 (2 dag) weekend
-10-08 (3 dag) weekend
+11-08 (3 dag) weekend
 
 12-08 (4 dag)
 installering af server og xampp på server, opdatering af server
@@ -15,5 +15,18 @@ opsæting af et Java MVC project vi af spring med et libary check med Maven
 opsæting og læring af Java MVC med validation og opsæting af database
 
 15-08 (7 dag)
-førdig med opsætining validation og database
+færdig med opsætining validation og database
 undersøgelse af three js til animations på websidet
+
+16-08 (8 dag)
+benjamin lærer js og alexander arbjeder på 3d planeter med benjamin der kigger med
+
+17-08 (9 dag) weekend
+18-08 (10 dag) weekend
+
+19-08 (11 dag)
+database begynder at blive sat op og alexander fortsætter på 3d planeter
+
+20-08 (12)
+database er færdig og har data i sig, script til at sætte hele databasen er lavet og alexander fortsætter på 3d planeter og path following
+
