@@ -6,33 +6,36 @@ var sun;
 var sunData = constructPlanetData(1,0.001,0,"sun","texture/sun.jpg",50,planetSegments);
 
 var mercury, mercuryOrbit;
-var mercuryData = constructPlanetData(365.2564, 0.0015,57,"mercury","texture/mercury.jpg",0.3,planetSegments);
+var mercuryData = constructPlanetData(80, 0.0015,57,"mercury","texture/mercury.jpg",0.38,planetSegments);
 
 var venus, venusOrbit;
-var venusData = constructPlanetData(365.2564, 0.015, 65, "venus", "texture/venus.jpg", 1, planetSegments)
+var venusData = constructPlanetData(225, -0.015, 65, "venus", "texture/venus.jpg", 1, planetSegments)
 
 var earth, earthOrbit;
-var earthData = constructPlanetData(365.2564, 0.015, 80, "earth", "texture/earth.jpg", 1, planetSegments);
+var earthData = constructPlanetData(365.2564, 0.024, 80, "earth", "texture/earth.jpg", 1, planetSegments);
 
 var moon;
-var moonData = constructPlanetData(29.5, 0.01, 2.8, "moon", "texture/moon.jpg", 0.5, planetSegments);
+var moonData = constructPlanetData(27, 0.02, 2.8, "moon", "texture/moon.jpg", 0.5, planetSegments);
 var moonOrbit;
 
 var mars, marsOrbit;
-var marsData = constructPlanetData(365.2564, 0.015, 90, "mars", "texture/mars.jpg", 0.5, planetSegments);
+var marsData = constructPlanetData(687, 0.015, 90, "mars", "texture/mars.jpg", 0.5, planetSegments);
 
 var jupiter, jupiterOrbit;
-var jupiterData = constructPlanetData(365.2564, 0.015, 110, "jupiter", "texture/jupiter.jpg", 8, planetSegments);
+var jupiterData = constructPlanetData(4380, 0.015, 110, "jupiter", "texture/jupiter.jpg", 8, planetSegments);
 
 var saturn, saturnOrbit;
-var saturnData = constructPlanetData(365.2564, 0.005, 135, "saturn", "texture/saturn.jpg", 8, planetSegments);
+var saturnData = constructPlanetData(  10585, 0.005, 135, "saturn", "texture/saturn.jpg", 8, planetSegments);
 var saturnRing;
 
 var uranus, uranusOrbit;
-var uranusData = constructPlanetData(365.2564, 0.015, 152, "uranus", "texture/uranus.jpg", 3, planetSegments);
+var uranusData = constructPlanetData( 30660, 0.015, 152, "uranus", "texture/uranus.jpg", 3, planetSegments);
 
 var neptune, neptuneOrbit;
-var neptuneData = constructPlanetData(365.2564, 0.015, 160, "neptune", "texture/neptune.jpg", 3, planetSegments);
+var neptuneData = constructPlanetData(60225, 0.015, 160, "neptune", "texture/neptune.jpg", 3, planetSegments);
+
+var pluto, plutoOrbit;
+var plutoData = constructPlanetData(90520, 0.015, 170, "pluto", "texture/pluto.jpg", 0.2, planetSegments);
 
 var orbitData = {
     value: 200,
@@ -147,7 +150,7 @@ function getMaterial(type, color, myTexture) {
  * @returns {undefined}
  */
 function createVisibleOrbits() {
-    var orbitWidth = 0.01;
+    var orbitWidth = 0.1;
     earthOrbit = getRing(earthData.distanceFromAxis + orbitWidth, earthData.distanceFromAxis - orbitWidth, 320, 0xffffff, "earthOrbit", 0);
     mercuryOrbit = getRing(mercuryData.distanceFromAxis + orbitWidth, mercuryData.distanceFromAxis - orbitWidth, 320, 0xffffff, "mercuryOrbit", 0);
     venusOrbit = getRing(venusData.distanceFromAxis + orbitWidth, venusData.distanceFromAxis - orbitWidth, 320, 0xffffff, "venusOrbit", 0);
@@ -156,6 +159,7 @@ function createVisibleOrbits() {
     saturnOrbit = getRing(saturnData.distanceFromAxis + orbitWidth, saturnData.distanceFromAxis - orbitWidth, 320, 0xffffff, "saturnOrbit", 0);
     uranusOrbit = getRing(uranusData.distanceFromAxis + orbitWidth, uranusData.distanceFromAxis - orbitWidth, 320, 0xffffff, "uranusOrbit", 0);
     neptuneOrbit = getRing(neptuneData.distanceFromAxis + orbitWidth, neptuneData.distanceFromAxis - orbitWidth, 320, 0xffffff, "neptuneOrbit", 0);
+    plutoOrbit = getRing(plutoData.distanceFromAxis + orbitWidth, plutoData.distanceFromAxis - orbitWidth, 320, 0xffffff, "plutoOrbit", 0);
 }
 
 /**
@@ -286,6 +290,7 @@ function update(renderer, scene, camera, controls) {
     movePlanet(saturnRing, saturnData, time, true);
     movePlanet(uranus, uranusData, time);
     movePlanet(neptune, neptuneData, time);
+    movePlanet(pluto, plutoData,time);
     renderer.render(scene, camera);
     requestAnimationFrame(function () {
         update(renderer, scene, camera, controls);
@@ -365,6 +370,9 @@ function init() {
     uranus = loadTexturedPlanet(uranusData, uranusData.distanceFromAxis, 0, 0);
 
     neptune = loadTexturedPlanet(neptuneData, neptuneData.distanceFromAxis, 0,0);
+
+    pluto = loadTexturedPlanet(plutoData, plutoData .distanceFromAxis,0,0);
+
     // Create the visible orbit that the Earth uses.
     createVisibleOrbits();
 
