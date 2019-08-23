@@ -1,9 +1,29 @@
 var canvas = document.getElementById("mazecanvas");
 var context = canvas.getContext("2d");
+
+var red = [255, 0, 0];
+var yellow = [255, 255, 0];
+var green = [0, 255, 0];
+var rgbGoalColors = [red, yellow, green];
+var selectedGoalColor = rgbGoalColors[Math.random() * 3];
+
 var currentX = 0;
 var currentY = 0;
-var mazeWidthX = 560;
-var mazeHeightY = 560;
+var mazeWidthX = 442;
+var mazeHeightY = 442;
+
+var mazeImg = new Image();
+var playerImg = new Image();
+
+var goalTask="Hvad nummer har merkur i solsystemet, ud fra solen";
+var goalSoloution="1";
+
+function loadVariables(maze, goalText, goalAnswer) {
+    mazeImg.src=maze;
+    playerImg.src="../Picture/player.png";
+    goalTask = goalText;
+    goalSoloution = goalAnswer;
+}
 
 function mazeStart(X, Y){
     currentX = X;
@@ -13,11 +33,8 @@ function mazeStart(X, Y){
 };
 
 function updateMaze(){
-    var mazeImg = new Image();
-    var playerImg = new Image();
     mazeImg.src="../Picture/Mercury.png";
-    playerImg.src="../Picture/player.png";
-
+    playerImg.src="../Picture/player.png"
     mazeImg.onload = function(){
         playerImg.onload = function(){
             context.drawImage(mazeImg, 0, 0);
@@ -30,9 +47,10 @@ function updateMaze(){
 
 function drawCircles(){
         context.beginPath();
-        context.arc(542, 122, 7, 0, 2 * Math.PI, false);
+        context.arc(410, 122, 7, 0, 2 * Math.PI, false);
         context.closePath();
-        context.fillStyle = '#00FF00';
+        //du nåede hertil, rgb duer ikke
+        //context.fillStyle = "rgba("+selectedGoalColor[0].toString()+", "+selectedGoalColor[1].toString()+", "+selectedGoalColor[2].toString()+", 1";
         context.fill();
 };
 
@@ -72,6 +90,8 @@ function movePlayer(e){
     }
     else if(canMove === 2){
         makeWhite(0, 0, canvas.width, canvas.height);
+        context.font = "40px Arial";
+        context.fillStyle = "blue";
         context.textAlign = "center";
         context.textBaseLine = "middle";
         context.fillText("ok asswipe", canvas.width / 2, canvas.height / 2);
@@ -89,7 +109,7 @@ function canMoveChecker(destX, destY){
                 canMove = 0; // 0 means: the rectangle can't move
                 break;
             }
-            else if (colorData[i] === 0 && colorData[i + 1] === 255 && colorData[i + 2] === 0) { // lime: #00FF00
+            else if (colorData[i] === selectedGoalColor[0] && colorData[i + 1] === selectedGoalColor[1] && colorData[i + 2] === selectedGoalColor[2]) {
                 canMove = 2; // 2 means: the end point is reached
                 break;
             }
@@ -105,9 +125,23 @@ function makeWhite(x, y, w, h) {
     context.beginPath();
     context.rect(x, y, w, h);
     context.closePath();
-    context.fillStyle = "yellow";
+    context.fillStyle = "green";
     context.fill();
 }
 
+function goalAssigner(){
+    makeWhite(0, 442, 442, 90);
+    context.font="20px Arial";
+    context.fillStyle="yellow";
+    context.textAlign="center";
+    context.textBaseLine="middle";
+    context.fillText(goalTask, 221, mazeHeightY+20, 300);
+    context.fillText(goalSoloution+" = rød", 221, mazeHeightY+40, 300);
+    context.fillText("4 = gul", 221, mazeHeightY+60, 300);
+    context.fillText("9 = grøn", 221, mazeHeightY+80, 300);
+}
+
+//loadVariables();
 mazeStart(225, 424);
 window.addEventListener("keydown", movePlayer, true);
+goalAssigner();
