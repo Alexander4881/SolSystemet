@@ -38,3 +38,9 @@ labyrint js er blevet "færdigt", det mangler bare at have punkter som man skal f
 opprettelse af 3d objecter med rotation og og en linje der viser dens orbit, der skal sættes en ambiant lys på solen, og så vil jeg gå vidre til en planet slider.
 samt zoom ind på en planet og dens orbit ved selection......
 
+23-08 (14)
+labyrinten er tæt på at være færdig, der mangler at blive lavet forbindelse til databasen og få lagt tables i databasen med billeder til hver labyrint, spørgsmål og svar
+der er problemer med at jeg ikke kan få goalsne i labyrintent til at ændre farve, ud fra min rgb array farver
+i dag er der blevet lavet så vi kan klikke på en planet også bliver den sat som target og 
+kameraet har den også som target så den følger den og du zommer fra den og til den.
+share mappen fra serveren gav lidt problemer med benjamin, men det blev løst, så vi kan overføre filer til serveren
