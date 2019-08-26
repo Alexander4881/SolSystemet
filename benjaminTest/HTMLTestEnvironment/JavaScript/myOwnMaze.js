@@ -2,10 +2,13 @@ var canvas = document.getElementById("mazecanvas");
 var context = canvas.getContext("2d");
 
 var red = [255, 0, 0];
-var yellow = [255, 255, 0];
-var green = [0, 255, 0];
+var yellow = [0, 255, 0];
+var green = [0, 0, 255];
 var rgbGoalColors = [red, yellow, green];
-var selectedGoalColor = rgbGoalColors[Math.random() * 3];
+const rndNumb = Math.floor(Math.random() * 3);
+
+var mazes = ["../Picture/Mercury.png", "../Picture/Venus.png", "../Picture/Mars.png", "../Picture/Jupiter.png",
+"../Picture/Saturn.png", "../Picture/Uranus.png", "../Picture/Neptune.png", "../Picture/Pluto.png"];
 
 var currentX = 0;
 var currentY = 0;
@@ -28,29 +31,54 @@ function loadVariables(maze, goalText, goalAnswer) {
 function mazeStart(X, Y){
     currentX = X;
     currentY = Y;
-    updateMaze();
+    loadMaze();
     console.log("mazestart");
 };
 
-function updateMaze(){
-    mazeImg.src="../Picture/Mercury.png";
-    playerImg.src="../Picture/player.png"
+function loadMaze(){
+    mazeImg.src=mazes[Math.floor(Math.random()*9)];
     mazeImg.onload = function(){
-        playerImg.onload = function(){
-            context.drawImage(mazeImg, 0, 0);
-            drawCircles();
-            context.drawImage(playerImg, currentX, currentY)
-        }
+        updateMaze();
     }
-    console.log("update maze");
+}
+
+function updateMaze(){
+    playerImg.src="../Picture/player.png"
+    playerImg.onload = function(){
+        context.drawImage(mazeImg, 0, 0);
+        circleColors();
+        context.drawImage(playerImg, currentX, currentY)
+    }
+    console.log("player moved");
 };
 
-function drawCircles(){
+function circleColors(){
+    switch (rndNumb){
+        case 0:
+            drawCircles(410, 122, rgbGoalColors[0]);
+            drawCircles(12, 12, rgbGoalColors[1]);
+            drawCircles(233, 210, rgbGoalColors[2]);
+            break;
+
+        case 1:
+            drawCircles(410, 122, rgbGoalColors[1]);
+            drawCircles(12, 12, rgbGoalColors[2]);
+            drawCircles(233, 210, rgbGoalColors[0]);
+            break;
+
+        case 2:
+            drawCircles(410, 122, rgbGoalColors[2]);
+            drawCircles(12, 12, rgbGoalColors[0]);
+            drawCircles(233, 210, rgbGoalColors[1]);
+            break;
+    }
+}
+
+function drawCircles(x, y, color){
         context.beginPath();
-        context.arc(410, 122, 7, 0, 2 * Math.PI, false);
+        context.arc(x, y, 7, 0, 2 * Math.PI, false);
         context.closePath();
-        //du nåede hertil, rgb duer ikke
-        //context.fillStyle = "rgba("+selectedGoalColor[0].toString()+", "+selectedGoalColor[1].toString()+", "+selectedGoalColor[2].toString()+", 1";
+        context.fillStyle = "rgb("+color[0]+", "+color[1]+", "+color[2]+")";
         context.fill();
 };
 
@@ -86,7 +114,7 @@ function movePlayer(e){
     if (canMove === 1){
         currentX = newX;
         currentY = newY;
-        updateMaze();
+        loadMaze();
     }
     else if(canMove === 2){
         makeWhite(0, 0, canvas.width, canvas.height);
@@ -137,8 +165,8 @@ function goalAssigner(){
     context.textBaseLine="middle";
     context.fillText(goalTask, 221, mazeHeightY+20, 300);
     context.fillText(goalSoloution+" = rød", 221, mazeHeightY+40, 300);
-    context.fillText("4 = gul", 221, mazeHeightY+60, 300);
-    context.fillText("9 = grøn", 221, mazeHeightY+80, 300);
+    context.fillText(Math.floor(Math.random() * 10)+" = grøn", 221, mazeHeightY+60, 300);
+    context.fillText(Math.floor(Math.random() * 10)+" = blå", 221, mazeHeightY+80, 300);
 }
 
 //loadVariables();
