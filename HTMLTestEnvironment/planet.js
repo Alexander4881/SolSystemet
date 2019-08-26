@@ -428,6 +428,7 @@ function update(renderer, scene, camera, controls) {
 // Start everything.
 init();
 
+var openPlanetInformation = false;
 $("#webgl").click(function (e) {
     e.preventDefault();
 
@@ -439,5 +440,17 @@ $("#webgl").click(function (e) {
     if (intersects.length > 0) {
         intersects = intersects[0].object.name;
         console.log(intersects);
+    }else{
+        intersects = null;
+    }
+    
+    openPlanetInformation = !openPlanetInformation;
+    
+    if(openPlanetInformation && intersects != null){
+        $('#planet-information').removeClass('hide');
+        $('#planet-information').addClass('show');
+    }else if(!openPlanetInformation && intersects != null){
+        $('#planet-information').removeClass('show');
+        $('#planet-information').addClass('hide');
     }
 });
