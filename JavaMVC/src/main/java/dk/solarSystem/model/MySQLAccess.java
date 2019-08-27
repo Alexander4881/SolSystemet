@@ -8,7 +8,7 @@ public class MySQLAccess {
      * 3306 is the default port for MySQL in XAMPP. Note both the
      * MySQL server and Apache must be running.
      */
-    String url = "jdbc:mysql://localhost:3306/test";
+    String url = "jdbc:mysql://localhost:3306/testdatabase";
 
     /**
      * The MySQL user.
@@ -32,6 +32,11 @@ public class MySQLAccess {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connect = DriverManager.getConnection(url, user, password);
+
+            Statement stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from testdatatable");
+
+            printResultSet(rs);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -44,10 +49,11 @@ public class MySQLAccess {
             // also possible to get the columns via the column number
             // which starts at 1
             // e.g. resultSet.getString(2);
-            Integer column1 = resultSet.getInt("Column1");
-            String column2 = resultSet.getString("Column2");
-            String column3 = resultSet.getString("Column3");
-            String column4 = resultSet.getString("Column4");
+            Integer column1 = resultSet.getInt(1);
+            String column2 = resultSet.getString(2);
+            String column3 = resultSet.getString(3);
+            String column4 = resultSet.getString(4);
+
             System.out.println("column1: " + column1);
             System.out.println("column2: " + column2);
             System.out.println("column3: " + column3);
