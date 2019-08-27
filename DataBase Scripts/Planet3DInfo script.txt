@@ -1,0 +1,12 @@
+INSERT INTO planet3dinfo 
+(PlanetName, PlanetTextureSrc, PlanetSize, DistanceFromCenter, OrbitRate, RotationRate) VALUES
+('Solen', './texture/sun.jpg', 50, 0, 1, 0.001),
+('Merkur', './texture/mercury.jpg', 0.38, 57, 80, 0.0015),
+('Venus', './texture/venus.jpg', 0.8, 65, 225, 0.015),
+('Jorden', './texture/earth.jpg', 1, 80, 365, 0.024),
+('Mars', './texture/mars.jpg', 0.5, 90, 687, 0.015),
+('Jupiter', './texture/jupiter.jpg', 8, 110, 4380, 0.015),
+('Saturn', './texture/saturn.jpg', 8, 135, 10585, 0.005),
+('Uranus', './texture/uranus.jpg', 3, 152, 30660, 0.015),
+('Neptun', './texture/neptune.jpg', 3, 160, 60225, 0.015),
+('Pluto', './texture/pluto.jpg', 0.2, 170, 90520, 0.015);

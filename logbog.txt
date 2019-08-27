@@ -56,3 +56,4 @@ der er også blevet lagt 7 andre maps ind som man kan spille, lige nu bliver de l
 27-08 (18)
 i dag er der blevet lavet en object bar i siden på vores home site hvor du kan vælge hvilken plante du vil følge og du kan få planetens information
 der er også blevet rettet en fejl hvor vi ikke kunne builde vores java backend, det var vores IDEA der fuckede med os den have en global referance den ikke kunne finde.
+sat labyrint delen af databasen op og planeternes info til vores rotation osv op, os sat data ind
