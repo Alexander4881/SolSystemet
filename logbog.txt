@@ -52,3 +52,7 @@ share mappen fra serveren gav lidt problemer med benjamin, men det blev løst, så
 rettet three js plante view klik på planeter driller lidt i nu men er gå et over til at lave resten af laytet på siden så det spiller
 har fået det roternde mål færdigjort, fejlen var at jeg ikke fik gjort min random færdig, så den gav kommatal til mit array, så den kunne ikke vælge tingende i arrayet
 der er også blevet lagt 7 andre maps ind som man kan spille, lige nu bliver de loaded random ind, men det er meningen at vært map høre til en planet..
+
+27-08 (18)
+i dag er der blevet lavet en object bar i siden på vores home site hvor du kan vælge hvilken plante du vil følge og du kan få planetens information
+der er også blevet rettet en fejl hvor vi ikke kunne builde vores java backend, det var vores IDEA der fuckede med os den have en global referance den ikke kunne finde.
