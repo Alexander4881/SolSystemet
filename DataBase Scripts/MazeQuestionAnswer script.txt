@@ -1,0 +1,9 @@
+INSERT INTO mazequestionanswer (PlanetName, Question, Answer) VALUES
+('Merkur', 'PlanetNumber', '1'), ('Merkur', 'PlanetMass', 'Solid'),
+('Venus', 'PlanetNumber', '2'), ('Venus', 'PlanetMass', 'Solid'),
+('Mars', 'PlanetNumber', '4'), ('Mars', 'PlanetMass', 'Solid'),
+('Jupiter', 'PlanetNumber', '5'), ('Jupiter', 'PlanetMass', 'Gas'),
+('Saturn', 'PlanetNumber', '6'), ('Saturn', 'PlanetMass', 'Gas'),
+('Uranus', 'PlanetNumber', '7'), ('Uranus', 'PlanetMass', 'Gas'),
+('Neptun', 'PlanetNumber', '8'), ('Neptun', 'PlanetMass', 'Gas'),
+('Pluto', 'PlanetNumber', '9'), ('Pluto', 'PlanetMass', 'Dværg');
