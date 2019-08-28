@@ -1,6 +1,7 @@
 package dk.solarSystem.model;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MySQLAccess {
 
@@ -31,18 +32,103 @@ public class MySQLAccess {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connect = DriverManager.getConnection(url, user, password);
+            connect = DriverManager.getConnection(url, user, password);
 
-            Statement stmt = connect.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Planet");
-
-            printResultSet(rs);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public
+    private ResultSet MySQLQuarry(String quarry){
+        Statement stmt = null;
+        try {
+            stmt = connect.createStatement();
+
+            return stmt.executeQuery(quarry);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // get all planets information
+    public ArrayList<Planet3DInformation> GetAll3DPlanetsInformation (){
+
+        ArrayList<Planet3DInformation> planets = new ArrayList<Planet3DInformation>();
+
+        try {
+            ResultSet resultSet = MySQLQuarry("CALL `solarsystem`.`All3DPlanetInformation`();");
+
+            while (resultSet.next()){
+                Planet3DInformation planet3DInformation = new Planet3DInformation(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDouble(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getDouble(8),
+                        resultSet.getString(9),
+                        resultSet.getString(10),
+                        resultSet.getString(11),
+                        resultSet.getDouble(12),
+                        resultSet.getString(13),
+                        resultSet.getString(14),
+                        resultSet.getString(15),
+                        resultSet.getString(16),
+                        resultSet.getString(17),
+                        resultSet.getDouble(18),
+                        resultSet.getDouble(19),
+                        resultSet.getDouble(20),
+                        resultSet.getDouble(21)
+                    );
+
+                planet3DInformation.setMoons(getMoonToPlanet(planet3DInformation.getName()));
+
+                planets.add(planet3DInformation);
+
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return planets;
+    }
+
+    // get the moon to a planet
+    public ArrayList<Moon3DInformation> getMoonToPlanet(String planetName){
+        ArrayList<Moon3DInformation> moons = new ArrayList<Moon3DInformation>();
+
+        try {
+            PreparedStatement preparedStatement = connect.prepareStatement("CALL `solarsystem`.`3DMoonInformation`(?);");
+            preparedStatement.setString(1,planetName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                Moon3DInformation moon3DInformation = new Moon3DInformation(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDouble(4),
+                        resultSet.getDouble(5),
+                        resultSet.getDouble(6),
+                        resultSet.getDouble(7),
+                        resultSet.getDouble(8),
+                        resultSet.getDouble(9),
+                        resultSet.getInt(10),
+                        resultSet.getInt(11),
+                        resultSet.getString(12)
+                        );
+
+                moons.add(moon3DInformation);
+
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return moons;
+    }
 
     private void printResultSet(ResultSet resultSet) throws SQLException {
         // ResultSet is initially before the first data set
