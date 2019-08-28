@@ -1,3 +1,8 @@
+DROP DATABASE IF EXISTS `SolarSystem`;
+CREATE DATABASE `SolarSystem`;
+
+USE `SolarSystem`;
+
 -- ---
 -- Globals
 -- ---
@@ -100,7 +105,7 @@ CREATE TABLE `DistanceMesurement` (
 DROP TABLE IF EXISTS `Planet3DInfo`;
 		
 CREATE TABLE `Planet3DInfo` (
-  `PlanetName` VARBINARY(255) NOT NULL DEFAULT 'NULL',
+  `PlanetName` VARCHAR(255) NOT NULL DEFAULT 'NULL',
   `PlanetTextureSrc` VARCHAR(255) NOT NULL DEFAULT 'NULL',
   `PlanetSize` DOUBLE NOT NULL DEFAULT 0.00,
   `DistanceFromCenter` DOUBLE NOT NULL DEFAULT 0.00,
@@ -164,7 +169,7 @@ ALTER TABLE `MassDirCir` ADD FOREIGN KEY (DDistanceName) REFERENCES `DistanceMes
 -- Added alter tables
 -- ---
 
-ALTER TABLE `Planet3DInfo` ADD FOREIGN KEY (PlanetName) REFERENCES `Planet` (`PlanetName`);
+ALTER TABLE solarsystem.planet3dinfo ADD FOREIGN KEY (PlanetName) REFERENCES solarsystem.planet (PlanetName);
 ALTER TABLE `MazeData` ADD FOREIGN KEY (PlanetName) REFERENCES `Planet` (`PlanetName`);
 ALTER TABLE `MazeQuestionAnswer` ADD FOREIGN KEY (PlanetName) REFERENCES `MazeData` (`PlanetName`);
 ALTER TABLE `MazeQuestionAnswer` ADD FOREIGN KEY (Question) REFERENCES `MazeQuestion` (`Question`);
