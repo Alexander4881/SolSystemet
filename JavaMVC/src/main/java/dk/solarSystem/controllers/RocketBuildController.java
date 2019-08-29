@@ -1,5 +1,4 @@
 package dk.solarSystem.controllers;
-
 import dk.solarSystem.model.MySQLAccess;
 import dk.solarSystem.model.Planet3DInformation;
 import org.springframework.stereotype.Controller;
@@ -10,20 +9,13 @@ import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class RocketBuildController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String Index(ModelMap model){
-        // add a string to the model that get sent to the view
-        model.addAttribute("variableName", "string content");
-        model.addAttribute("title", "Home");
 
-        MySQLAccess mySQL = new MySQLAccess();
 
-        ArrayList<Planet3DInformation> planet3DInformations = mySQL.GetAll3DPlanetsInformation();
 
-        model.addAttribute("planets", planet3DInformations);
-        // view name
         return "home";
     }
 }
