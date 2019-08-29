@@ -12,53 +12,53 @@
 
 <div class="planet-overview">
     <!-- sun -->
-    <div class="row" onclick="setPlanetIntersects('sun')">
-        <image src="./resorses planetImg/Sun.png" />
+    <div class="row" onclick="setPlanetIntersects('Solen')">
+        <img src="./resources/images/Sun.png" />
     </div>
 
     <!-- mercury -->
-    <div class="row" onclick="setPlanetIntersects('mercury')">
-        <img src="./planetImg/Mercury.png" />
+    <div class="row" onclick="setPlanetIntersects('Merkur')">
+        <img src="./resources/images/Mercury.png" />
     </div>
 
     <!-- venus -->
-    <div class="row" onclick="setPlanetIntersects('venus')">
-        <img src="./planetImg/Venus.png" />
+    <div class="row" onclick="setPlanetIntersects('Venus')">
+        <img src="./resources/images/Venus.png" />
     </div>
 
     <!-- earth -->
-    <div class="row" onclick="setPlanetIntersects('earth')">
-        <img src="./planetImg/Earth.png" />
+    <div class="row" onclick="setPlanetIntersects('Jorden')">
+        <img src="./resources/images/Earth.png" />
     </div>
 
     <!-- mars -->
-    <div class="row" onclick="setPlanetIntersects('mars')">
-        <img src="./planetImg/Mars.png" />
+    <div class="row" onclick="setPlanetIntersects('Mars')">
+        <img src="./resources/images/Mars.png" />
     </div>
 
     <!-- jupiter -->
-    <div class="row" onclick="setPlanetIntersects('jupiter')">
-        <img src="./planetImg/Jupiter.png" />
+    <div class="row" onclick="setPlanetIntersects('Jupiter')">
+        <img src="./resources/images/Jupiter.png" />
     </div>
 
     <!-- saturn -->
-    <div class="row" onclick="setPlanetIntersects('saturn')">
-        <img src="./planetImg/Saturn.png" />
+    <div class="row" onclick="setPlanetIntersects('Saturn')">
+        <img src="./resources/images/Saturn.png" />
     </div>
 
     <!-- uranus -->
-    <div class="row" onclick="setPlanetIntersects('uranus')">
-        <img src="./planetImg/Uranus.png" />
+    <div class="row" onclick="setPlanetIntersects('Uranus')">
+        <img src="./resources/images/Uranus.png" />
     </div>
 
     <!-- neptune -->
-    <div class="row" onclick="setPlanetIntersects('neptune')">
-        <img src="./planetImg/Neptune.png" />
+    <div class="row" onclick="setPlanetIntersects('Neptun')">
+        <img src="./resources/images/Neptune.png" />
     </div>
 
     <!-- pluto -->
-    <div class="row" onclick="setPlanetIntersects('pluto')">
-        <img src="./planetImg/Pluto.png" />
+    <div class="row" onclick="setPlanetIntersects('Pluto')">
+        <img src="./resources/images/Pluto.png" />
     </div>
 
 </div>
@@ -504,6 +504,11 @@
             planetInformation = intersects;
         }
     });
+
+    function setPlanetIntersects(planetName){
+        intersects = planetName;
+        setPlanetInformation();
+    }
 </script>
 
 <%@include file="layout/fotter.jsp"%>
