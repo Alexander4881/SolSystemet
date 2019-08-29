@@ -57,3 +57,12 @@ der er også blevet lagt 7 andre maps ind som man kan spille, lige nu bliver de l
 i dag er der blevet lavet en object bar i siden på vores home site hvor du kan vælge hvilken plante du vil følge og du kan få planetens information
 der er også blevet rettet en fejl hvor vi ikke kunne builde vores java backend, det var vores IDEA der fuckede med os den have en global referance den ikke kunne finde.
 sat labyrint delen af databasen op og planeternes info til vores rotation osv op, os sat data ind
+
+28-08 (19)
+databasen er blevet fyldt op med mere data, lavet connection til vores planet hjemmeside, så planeterne bevæger sig ud fra dataen i databasen
+så bagte vi kage
+
+29-08 (20)
+databasen er ved at få connection til labyrinten og så er der nogle scripts der er blevet tilretted.
+benjamin er blevet sat lidt mere ind i backend og fået forklaret hvordan man laver connection mellem database-backend-JS, men er stadig ikke så god til det
+rettelser af fejl og andet er også blevet lavet med vores planet view, da knapperne i siden, til at fokusere på en planet, manglede
