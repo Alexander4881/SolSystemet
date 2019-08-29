@@ -10,12 +10,65 @@
 
 <%@include file="layout/header.jsp"%>
 
+<div class="planet-overview">
+    <!-- sun -->
+    <div class="row" onclick="setPlanetIntersects('sun')">
+        <image src="./resorses planetImg/Sun.png" />
+    </div>
+
+    <!-- mercury -->
+    <div class="row" onclick="setPlanetIntersects('mercury')">
+        <img src="./planetImg/Mercury.png" />
+    </div>
+
+    <!-- venus -->
+    <div class="row" onclick="setPlanetIntersects('venus')">
+        <img src="./planetImg/Venus.png" />
+    </div>
+
+    <!-- earth -->
+    <div class="row" onclick="setPlanetIntersects('earth')">
+        <img src="./planetImg/Earth.png" />
+    </div>
+
+    <!-- mars -->
+    <div class="row" onclick="setPlanetIntersects('mars')">
+        <img src="./planetImg/Mars.png" />
+    </div>
+
+    <!-- jupiter -->
+    <div class="row" onclick="setPlanetIntersects('jupiter')">
+        <img src="./planetImg/Jupiter.png" />
+    </div>
+
+    <!-- saturn -->
+    <div class="row" onclick="setPlanetIntersects('saturn')">
+        <img src="./planetImg/Saturn.png" />
+    </div>
+
+    <!-- uranus -->
+    <div class="row" onclick="setPlanetIntersects('uranus')">
+        <img src="./planetImg/Uranus.png" />
+    </div>
+
+    <!-- neptune -->
+    <div class="row" onclick="setPlanetIntersects('neptune')">
+        <img src="./planetImg/Neptune.png" />
+    </div>
+
+    <!-- pluto -->
+    <div class="row" onclick="setPlanetIntersects('pluto')">
+        <img src="./planetImg/Pluto.png" />
+    </div>
+
+</div>
+
 <div class="container-fluid">
 
     <c:forEach var="planet" items="${planets}">
         <div id="${planet.name}" class="planet-information hide">
             <div class="container text-danger">
-                <h1 class="display-2">Planet Name: ${planet.name}</h1>
+                <h1 class="display-2">${planet.name}</h1>
                 <p class="text-justify">
                     ${planet.description}
                 </p>

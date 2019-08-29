@@ -911,9 +911,9 @@ INSERT INTO planet3dinfo
 ('Pluto', '/resources/texture/pluto.jpg', 0.2, 170, 90520, 0.015);
 
 INSERT INTO moon3dinfo 
-(moonName,PlanetName, moonTextureSrc, moonSize, DistanceFromPlanet, OrbitRate, RotationRate, OrbitSize, InnerSize, FaceRoundness, FaceDigRound, Color) VALUES
-('månen','Jorden', '/resources/texture/moon.jpg', 0.5, 2.8, 27, 0, 0.02, 2.8, 0.01, 480, 480, '0x757064'),
-('saturnRing','Saturn', 'null.jpg', 0, 0, 0, 0, 11.3, 2, 2, 480, '0x8D7E60');
+(moonName,	PlanetName,		moonTextureSrc, 					moonSize, 	DistanceFromPlanet, OrbitRate, 	RotationRate, 	OrbitSize, 	InnerSize, 	FaceRoundness, 	FaceDigRound, 	Color) VALUES
+('månen',	'Jorden', 		'/resources/texture/moon.jpg', 		0.5, 		2.8, 				27, 		0.02, 			2.8, 		0.01, 		480, 			480, 			'0x757064'),
+('saturnRing','Saturn', 	'null.jpg', 						0, 			0, 					0, 			0, 				11.3, 		2, 			2, 				480, 			'0x8D7E60');
 
 INSERT INTO mazedata (PlanetName, ImgSrc) VALUES
 ('Merkur', '../Picture/Mercury.png'),
@@ -995,7 +995,7 @@ BEGIN
     solarsystem.moon3dinfo.DistanceFromPlanet,
     solarsystem.moon3dinfo.OrbitRate,
     solarsystem.moon3dinfo.RotationRate,
-    solarsystem.moon3dinfo.OrbitRate,
+    solarsystem.moon3dinfo.OrbitSize,
     solarsystem.moon3dinfo.InnerSize,
     solarsystem.moon3dinfo.FaceRoundness,
     solarsystem.moon3dinfo.FaceDigRound,

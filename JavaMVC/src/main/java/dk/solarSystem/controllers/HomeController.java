@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class HomeController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public String helloMessage(ModelMap model){
+    public String Index(ModelMap model){
         // add a string to the model that get sent to the view
         model.addAttribute("variableName", "string content");
         model.addAttribute("title", "Home");
@@ -31,21 +31,5 @@ public class HomeController {
         model.addAttribute("planets", planet3DInformations);
         // view name
         return "home";
-    }
-
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public String testUser(ModelMap model){
-        PersonForm user = new PersonForm();
-        model.addAttribute("user", user);
-        return "form";
-    }
-
-    @RequestMapping(value = "user", method = RequestMethod.POST)
-    public String checkPersonForm(@Valid @ModelAttribute("user") PersonForm user, BindingResult br){
-
-        if (br.hasFieldErrors()){
-            return "form";
-        }
-        return"results";
     }
 }
