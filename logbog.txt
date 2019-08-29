@@ -66,3 +66,4 @@ så bagte vi kage
 databasen er ved at få connection til labyrinten og så er der nogle scripts der er blevet tilretted.
 benjamin er blevet sat lidt mere ind i backend og fået forklaret hvordan man laver connection mellem database-backend-JS, men er stadig ikke så god til det
 rettelser af fejl og andet er også blevet lavet med vores planet view, da knapperne i siden, til at fokusere på en planet, manglede
+opsæting af home page med dal og database script rettet en fejl med klik på ved at bruge event offset y og event offset x
