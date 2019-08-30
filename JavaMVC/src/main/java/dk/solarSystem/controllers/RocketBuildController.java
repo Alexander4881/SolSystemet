@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/rocketbuild")
 public class RocketBuildController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String Index(ModelMap model){
 
-
-
-        return "home";
+        return "rocketbuild";
     }
 }

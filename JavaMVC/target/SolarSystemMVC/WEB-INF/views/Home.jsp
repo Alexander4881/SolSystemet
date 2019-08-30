@@ -327,7 +327,6 @@
         }
     }
 
-
     /**
      * This is the function that starts everything.
      * @returns {THREE.Scene|scene}
