@@ -130,6 +130,32 @@ public class MySQLAccess {
         return moons;
     }
 
+    public ArrayList<MazeGoal> GetMazeGoal(String planetName){
+        ArrayList<MazeGoal> mazes = new ArrayList<MazeGoal>();
+
+        try {
+            PreparedStatement preparedStatement = connect.prepareStatement("CALL `solarsystem`.`MazeGoal`(?);");
+            preparedStatement.setString(1, planetName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                MazeGoal newMazeGoal = new MazeGoal(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5)
+                );
+
+                mazes.add(newMazeGoal);
+            }
+
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return mazes;
+    };
+
     private void printResultSet(ResultSet resultSet) throws SQLException {
         // ResultSet is initially before the first data set
         while (resultSet.next()) {
