@@ -1,42 +1,41 @@
 var pointLight, controls, scene, camera, renderer;
 var planetSegments = 48;
-var mouse = new THREE.Vector2(),
-    INTERSECTED, raycaster;
+var mouse = new THREE.Vector2(), raycaster;
 
 var sun;
-var sunData = constructPlanetData(1, 0.001, 0, "sun", "./texture/sun.jpg", 50, planetSegments);
+var sunData = constructPlanetData(1, 0.001, 0, "sun", "texture/sun.jpg", 50, planetSegments);
 
 var mercury, mercuryOrbit;
-var mercuryData = constructPlanetData(80, 0.0015, 57, "mercury", "./texture/mercury.jpg", 0.38, planetSegments);
+var mercuryData = constructPlanetData(80, 0.0015, 57, "mercury", "texture/mercury.jpg", 0.38, planetSegments);
 
 var venus, venusOrbit;
-var venusData = constructPlanetData(225, -0.015, 65, "venus", "./texture/venus.jpg", 1, planetSegments)
+var venusData = constructPlanetData(225, -0.015, 65, "venus", "texture/venus.jpg", 1, planetSegments)
 
 var earth, earthOrbit;
-var earthData = constructPlanetData(365.2564, 0.024, 80, "earth", "./texture/earth.jpg", 1, planetSegments);
+var earthData = constructPlanetData(365.2564, 0.024, 80, "earth", "texture/earth.jpg", 1, planetSegments);
 
 var moon;
-var moonData = constructPlanetData(27, 0.02, 2.8, "moon", "./texture/moon.jpg", 0.5, planetSegments);
+var moonData = constructPlanetData(27, 0.02, 2.8, "moon", "texture/moon.jpg", 0.5, planetSegments);
 var moonOrbit;
 
 var mars, marsOrbit;
-var marsData = constructPlanetData(687, 0.015, 90, "mars", "./texture/mars.jpg", 0.5, planetSegments);
+var marsData = constructPlanetData(687, 0.015, 90, "mars", "texture/mars.jpg", 0.5, planetSegments);
 
 var jupiter, jupiterOrbit;
-var jupiterData = constructPlanetData(4380, 0.015, 110, "jupiter", "./texture/jupiter.jpg", 8, planetSegments);
+var jupiterData = constructPlanetData(4380, 0.015, 110, "jupiter", "texture/jupiter.jpg", 8, planetSegments);
 
 var saturn, saturnOrbit;
-var saturnData = constructPlanetData(10585, 0.005, 135, "saturn", "./texture/saturn.jpg", 8, planetSegments);
+var saturnData = constructPlanetData(10585, 0.005, 135, "saturn", "texture/saturn.jpg", 8, planetSegments);
 var saturnRing;
 
 var uranus, uranusOrbit;
-var uranusData = constructPlanetData(30660, 0.015, 152, "uranus", "./texture/uranus.jpg", 3, planetSegments);
+var uranusData = constructPlanetData(30660, 0.015, 152, "uranus", "texture/uranus.jpg", 3, planetSegments);
 
 var neptune, neptuneOrbit;
-var neptuneData = constructPlanetData(60225, 0.015, 160, "neptune", "./texture/neptune.jpg", 3, planetSegments);
+var neptuneData = constructPlanetData(60225, 0.015, 160, "neptune", "texture/neptune.jpg", 3, planetSegments);
 
 var pluto, plutoOrbit;
-var plutoData = constructPlanetData(90520, 0.015, 170, "pluto", "./texture/pluto.jpg", 0.2, planetSegments);
+var plutoData = constructPlanetData(90520, 0.015, 170, "pluto", "texture/pluto.jpg", 0.2, planetSegments);
 
 var orbitData = {
     value: 200,
@@ -438,30 +437,19 @@ $("#webgl").click(function (e) {
     raycaster.setFromCamera(mouse, camera);
     intersects = raycaster.intersectObjects(scene.children);
     if (intersects.length > 0) {
-        setPlanetIntersects(intersects[0].object.name);
+        intersects = intersects[0].object.name;
         console.log(intersects);
     }else{
         intersects = null;
     }
-
-    setPlanetInformation();
-
-});
-
-function setPlanetIntersects(planetName){
-    intersects = planetName;
-    setPlanetInformation();
-}
-
-function setPlanetInformation(){
+    
     openPlanetInformation = !openPlanetInformation;
     
     if(openPlanetInformation && intersects != null){
-        // set the lanet name to get information
         $('#planet-information').removeClass('hide');
         $('#planet-information').addClass('show');
     }else if(!openPlanetInformation && intersects != null){
         $('#planet-information').removeClass('show');
         $('#planet-information').addClass('hide');
     }
-}
+});
