@@ -32,7 +32,7 @@
                                 <a class="nav-link" href="#">Planets<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link" href="${contextPath}">Planet Information</a>
+                                <a class="nav-link" href="${contextPath}/">Planet Information</a>
                         </li>
                         <li class="nav-item">
                                 <a class="nav-link" href="${contextPath}/rocketbuild">Build A Rocket</a>

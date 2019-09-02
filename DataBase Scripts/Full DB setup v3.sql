@@ -917,12 +917,12 @@ INSERT INTO moon3dinfo
 
 INSERT INTO mazedata 
 (PlanetName, ImgSrc) VALUES
-('Sol', './resources/mazeimg/Sun.png'),
+('Sol', './resources/mazeimg/Pluto.png'),
 ('Merkur', './resources/mazeimg/Mercury.png'),
 ('Venus', './resources/mazeimg/Venus.png'),
 ('Jorden', './resources/mazeimg/Earth.png'),
 ('Mars', './resources/mazeimg/Mars.png'),
-('Jupiter', './resources/mazeimg/Jupiter.png'),
+('Jupiter', './resources/mazeimg/Pluto.png'),
 ('Saturn', './resources/mazeimg/Saturn.png'),
 ('Uranus', './resources/mazeimg/Uranus.png'),
 ('Neptun', './resources/mazeimg/Neptune.png'),
