@@ -64,6 +64,9 @@
                 else if(goalSoloution === "Dværg"){
                         fillerAnswers = ["Gas", "Solid"];
                 }
+                else if(goalSoloution === "Sol"){
+                    fillerAnswers = ["Gas", "Solid"];
+                }
         }
 
         function mazeStart(X, Y){
