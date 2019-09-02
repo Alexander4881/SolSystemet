@@ -917,31 +917,26 @@ INSERT INTO moon3dinfo
 
 INSERT INTO mazedata 
 (PlanetName, ImgSrc) VALUES
-
+('Sol', './resources/mazeimg/Sun.png'),
 ('Merkur', './resources/mazeimg/Mercury.png'),
-
 ('Venus', './resources/mazeimg/Venus.png'),
-
+('Jorden', './resources/mazeimg/Earth.png'),
 ('Mars', './resources/mazeimg/Mars.png'),
-
 ('Jupiter', './resources/mazeimg/Jupiter.png'),
-
 ('Saturn', './resources/mazeimg/Saturn.png'),
-
 ('Uranus', './resources/mazeimg/Uranus.png'),
-
 ('Neptun', './resources/mazeimg/Neptune.png'),
-
 ('Pluto', './resources/mazeimg/Pluto.png');
-
 
 INSERT INTO mazequestion (Question, QuestionText) VALUES
 ('PlanetNumber', 'Hvad nummer har denne planet i solsystemt, hvis man tæller fra solen af'),
 ('PlanetMass', 'Hvad for en slags planet er dette');
 
 INSERT INTO mazequestionanswer (PlanetName, Question, Answer) VALUES
+('Solen', 'PlanetNumber', '0'), ('Solen', 'PlanetMass', 'Sol'),
 ('Merkur', 'PlanetNumber', '1'), ('Merkur', 'PlanetMass', 'Solid'),
 ('Venus', 'PlanetNumber', '2'), ('Venus', 'PlanetMass', 'Solid'),
+('Jorden', 'PlanetNumber', '3'), ('Jorden', 'PlanetMass', 'Solid'),
 ('Mars', 'PlanetNumber', '4'), ('Mars', 'PlanetMass', 'Solid'),
 ('Jupiter', 'PlanetNumber', '5'), ('Jupiter', 'PlanetMass', 'Gas'),
 ('Saturn', 'PlanetNumber', '6'), ('Saturn', 'PlanetMass', 'Gas'),
