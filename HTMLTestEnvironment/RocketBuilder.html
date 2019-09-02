@@ -49,9 +49,64 @@
         </div>
     </nav> -->
 
+    <table class="w-100 h-100 rocket-background">
+
+        <thead>
+            <th class="w-5"></th>
+            <th class="w-90"></th>
+            <th class="w-5"></th>
+        </thead>
+        <tbody>
+            <tr class="h-10">
+                <td colspan="3">
+                    <h1 class="display-4 text-center">byg din egen rumraket</h1>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Mercury.png" height="50" alt="mercury image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Venus.png" height="50" alt="venus image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Earth.png" height="50" alt="earth image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Mars.png" height="50" alt="mars image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Jupiter.png" height="50" alt="jupiter image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Saturn.png" height="50" alt="saturn image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Uranus.png" height="50" alt="uranus image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Neptune.png" height="50" alt="neptune image"></div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        
+                        <div class="col-sm-8 mt-2">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-2"></div>
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="h-25">
+                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('head',false)"><</button> </td>
+                <td rowspan="3" id="webgl"></td>
+                <td> <button type="button" class="btn btn-dark float-right" onclick="changeRocketPart('head',true)">></button>
+                </td>
+            </tr>
+
+            <tr class="h-25">
+                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('body',false)"><</button> </td>
+                <td> <button type="button" class="btn btn-dark float-right" onclick="changeRocketPart('body',true)">></button>
+                </td>
+            </tr>
+
+            <tr class="h-25">
+                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('thruster',false)"><</button> </td>
+                <td> <button type="button" class="btn btn-dark float-right" onclick="changeRocketPart('thruster',true)">></button> </td>
+            </tr>
+        </tbody>
+    </table>
 
     <script src="./JavaScript/ThreeJS/three.min.js"></script>
-    <script src="./JavaScript/ThreeJS/OrbitControls.js"></script>
     <script src="./JavaScript/ThreeJS/LoaderSupport.js"></script>
     <script src="./JavaScript/ThreeJS/MTLLoader.js"></script>
     <script src="./JavaScript/ThreeJS/OBJLoader2.js"></script>
@@ -61,75 +116,145 @@
         // import * as THREE from "./JavaScript/ThreeJS/three.min.js";
 
         var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        
+        var camera = new THREE.PerspectiveCamera(75, $('#webgl').innerWidth() / $('#webgl').innerHeight(), 0.1, 1000);
+
         var renderer = new THREE.WebGLRenderer();
-        var controls = new THREE.OrbitControls( camera, renderer.domElement );
+        //var controls = new THREE.OrbitControls( camera, renderer.domElement );
 
-        loadOBJ("./CSS/3DObjects/RocketThruster_001.obj","./CSS/3DObjects/RocketThruster_001.mtl", 0, 0, 0);
-        loadOBJ("./CSS/3DObjects/RocketThruster_002.obj","./CSS/3DObjects/RocketThruster_002.mtl", 0, 8, 0);
-        loadOBJ("./CSS/3DObjects/RocketThruster_003.obj","./CSS/3DObjects/RocketThruster_003.mtl", 0, -8, 0);
+        const heads = ["RocketHead_001", "RocketHead_002", "RocketHead_003"];
+        let headSelected = 1;
+        loadOBJ("./CSS/3DObjects/RocketNose_001.obj", "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0, "RocketHead_001");
+        loadOBJ("./CSS/3DObjects/RocketNose_002.obj", "./CSS/3DObjects/RocketNose_002.mtl", 9.3, 8, 0, "RocketHead_002");
+        loadOBJ("./CSS/3DObjects/RocketNose_003.obj", "./CSS/3DObjects/RocketNose_003.mtl", 9.3, -8, 0, "RocketHead_003");
 
-        loadOBJ("./CSS/3DObjects/RocketBody_001.obj", "./CSS/3DObjects/RocketBody_001.mtl", 4, 0, 0);
-        loadOBJ("./CSS/3DObjects/RocketBody_002.obj", "./CSS/3DObjects/RocketBody_002.mtl", 4, 8, 0);
-        loadOBJ("./CSS/3DObjects/RocketBody_003.obj", "./CSS/3DObjects/RocketBody_003.mtl", 4, -8, 0);
+        const body = ["Body_001", "Body_002", "Body_003"];
+        let bodySelected = 1;
+        loadOBJ("./CSS/3DObjects/RocketBody_001.obj", "./CSS/3DObjects/RocketBody_001.mtl", 4, 0, 0, "Body_001");
+        loadOBJ("./CSS/3DObjects/RocketBody_002.obj", "./CSS/3DObjects/RocketBody_002.mtl", 4, 8, 0, "Body_002");
+        loadOBJ("./CSS/3DObjects/RocketBody_003.obj", "./CSS/3DObjects/RocketBody_003.mtl", 4, -8, 0, "Body_003");
 
-        loadOBJ("./CSS/3DObjects/RocketNose_001.obj", "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0);
-        loadOBJ("./CSS/3DObjects/RocketNose_002.obj", "./CSS/3DObjects/RocketNose_002.mtl", 9.3, 8, 0);
-        loadOBJ("./CSS/3DObjects/RocketNose_003.obj", "./CSS/3DObjects/RocketNose_003.mtl", 9.3, -8, 0);
+        const thruster = ["Rocket_001", "Rocket_002", "Rocket_003"];
+        let thrusterSelected = 1;
+        loadOBJ("./CSS/3DObjects/RocketThruster_001.obj", "./CSS/3DObjects/RocketThruster_001.mtl", 0, 0, 0, "Rocket_001");
+        loadOBJ("./CSS/3DObjects/RocketThruster_002.obj", "./CSS/3DObjects/RocketThruster_002.mtl", 0, 8, 0, "Rocket_002");
+        loadOBJ("./CSS/3DObjects/RocketThruster_003.obj", "./CSS/3DObjects/RocketThruster_003.mtl", 0, -8, 0, "Rocket_003");
 
 
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor (0xf0f0f0, 1);
-        document.body.appendChild(renderer.domElement);
+        renderer.setSize($('#webgl').innerWidth(), $('#webgl').innerHeight());
+        renderer.setClearColor(0x6ee3f5, 1);
+        $('#webgl').append(renderer.domElement);
 
-        
-        function loadOBJ(objPath,mtlPath, positionY, positionX, positionZ){
+
+        function loadOBJ(objPath, mtlPath, positionY, positionX, positionZ, name) {
             const objLoader = new THREE.OBJLoader2();
             objLoader.loadMtl(mtlPath, null, (materials) => {
                 objLoader.setMaterials(materials);
                 objLoader.load(objPath, (event) => {
                     const root = event.detail.loaderRootNode;
                     root.position.set(positionX, positionY, positionZ);
+                    root.name = name;
                     scene.add(root);
                 });
             });
         }
 
-        var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
-        scene.add( light );
+        var light = new THREE.PointLight(0xffffff, 1, 200);
+        light.position.set(50, 50, 50);
+        scene.add(light);
 
+        function changeRocketPart(rocketPart, forward) {
+            switch (rocketPart) {
+                case "head":
+                    if (forward) {
+                        if (headSelected < heads.length-1) {
+                            heads.forEach(rocketHead => {
+                                var screenObj = scene.getObjectByName(rocketHead);
+                                screenObj.translateX(8);
+                            });
+                            headSelected++;
+                        }
+                    } else {
+                        if (headSelected >= 1) {
+                            headSelected--;
+                            heads.forEach(rocketHead => {
+                                var screenObj = scene.getObjectByName(rocketHead);
+                                screenObj.translateX(-8);
+                            });
+                        }
+                    }
+                    break;
 
-        // scene.add(rocketPartsThruster);
-        // scene.add(rocketPartsBody);
-        // scene.add(rocketPartsNose);
+                case "body":
+                    if (forward) {
+                        if (bodySelected < body.length-1) {
+                            body.forEach(rocketBody => {
+                                var screenObj = scene.getObjectByName(rocketBody);
+                                screenObj.translateX(8);
+                            });
+                            bodySelected++;
+                        }
+                    } else {
+                        if (bodySelected >= 1) {
+                            bodySelected--;
+                            body.forEach(rocketBody => {
+                                var screenObj = scene.getObjectByName(rocketBody);
+                                screenObj.translateX(-8);
+                            });
+                        }
+                    }
+                    break;
 
+                case "thruster":
+                    if (forward) {
+                        if (thrusterSelected < thruster.length-1) {
+                            thruster.forEach(rocketThruster => {
+                                var screenObj = scene.getObjectByName(rocketThruster);
+                                screenObj.translateX(8);
+                            });
+                            thrusterSelected++;
+                        }
+                    } else {
 
-        function spaceOBJs(rocketParts){
-            for (i = 0; i < rocketParts.length; i++) { 
+                        if (thrusterSelected >= 1) {
+                            thrusterSelected--;
+                            thruster.forEach(rocketThruster => {
+                                var screenObj = scene.getObjectByName(rocketThruster);
+                                screenObj.translateX(-8);
+                            });
+                        }
+                    }
+                    break;
+
+                default:
+                    console.error("not valid paramerters");
+                    break;
+            }
+        }
+
+        function spaceOBJs(rocketParts) {
+            for (i = 0; i < rocketParts.length; i++) {
                 console.log(i);
             }
         }
 
-        camera.position.z = 20;
-        camera.position.y = 10;
+        camera.position.z = 15;
+        camera.position.y = 5;
 
-        controls.target = new THREE.Vector3(0, 10, 0);
+        //controls.target = new THREE.Vector3(0, 5, 0);
 
-        controls.update();
+        //controls.update();
 
         function animate() {
             requestAnimationFrame(animate);
 
             // required if controls.enableDamping or controls.autoRotate are set to true
-	        controls.update();
+            // controls.update();
 
             renderer.render(scene, camera);
         }
         animate();
 
     </script>
-
 </body>
 
 </html>
