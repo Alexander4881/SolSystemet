@@ -1,6 +1,8 @@
 INSERT INTO mazequestionanswer (PlanetName, Question, Answer) VALUES
+('Solen', 'PlanetNumber', '0'), ('Solen', 'PlanetMass', 'Sol'),
 ('Merkur', 'PlanetNumber', '1'), ('Merkur', 'PlanetMass', 'Solid'),
 ('Venus', 'PlanetNumber', '2'), ('Venus', 'PlanetMass', 'Solid'),
+('Jorden', 'PlanetNumber', '3'), ('Jorden', 'PlanetMass', 'Solid'),
 ('Mars', 'PlanetNumber', '4'), ('Mars', 'PlanetMass', 'Solid'),
 ('Jupiter', 'PlanetNumber', '5'), ('Jupiter', 'PlanetMass', 'Gas'),
 ('Saturn', 'PlanetNumber', '6'), ('Saturn', 'PlanetMass', 'Gas'),
