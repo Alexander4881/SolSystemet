@@ -66,27 +66,56 @@
         var renderer = new THREE.WebGLRenderer();
         var controls = new THREE.OrbitControls( camera, renderer.domElement );
 
-        var rocketPartsGroup = new THREE.Group();
+        loadOBJ("./CSS/3DObjects/RocketThruster_001.obj","./CSS/3DObjects/RocketThruster_001.mtl", 0, 0, 0);
+        loadOBJ("./CSS/3DObjects/RocketThruster_002.obj","./CSS/3DObjects/RocketThruster_002.mtl", 0, 8, 0);
+        loadOBJ("./CSS/3DObjects/RocketThruster_003.obj","./CSS/3DObjects/RocketThruster_003.mtl", 0, -8, 0);
+
+        loadOBJ("./CSS/3DObjects/RocketBody_001.obj", "./CSS/3DObjects/RocketBody_001.mtl", 4, 0, 0);
+        loadOBJ("./CSS/3DObjects/RocketBody_002.obj", "./CSS/3DObjects/RocketBody_002.mtl", 4, 8, 0);
+        loadOBJ("./CSS/3DObjects/RocketBody_003.obj", "./CSS/3DObjects/RocketBody_003.mtl", 4, -8, 0);
+
+        loadOBJ("./CSS/3DObjects/RocketNose_001.obj", "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0);
+        loadOBJ("./CSS/3DObjects/RocketNose_002.obj", "./CSS/3DObjects/RocketNose_002.mtl", 9.3, 8, 0);
+        loadOBJ("./CSS/3DObjects/RocketNose_003.obj", "./CSS/3DObjects/RocketNose_003.mtl", 9.3, -8, 0);
+
 
         renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor (0xf0f0f0, 1);
         document.body.appendChild(renderer.domElement);
 
-        const objLoader = new THREE.OBJLoader2();
-        objLoader.loadMtl('./CSS/3DObjects/RocketParts.mtl', null, (materials) => {
-          // materials.Material.side = THREE.DoubleSide;
-          objLoader.setMaterials(materials);
-          objLoader.load('./CSS/3DObjects/RocketParts.obj', (event) => {
-            const root = event.detail.loaderRootNode;
-            rocketPartsGroup.add(root);
-          });
-        }); 
+        
+        function loadOBJ(objPath,mtlPath, positionY, positionX, positionZ){
+            const objLoader = new THREE.OBJLoader2();
+            objLoader.loadMtl(mtlPath, null, (materials) => {
+                objLoader.setMaterials(materials);
+                objLoader.load(objPath, (event) => {
+                    const root = event.detail.loaderRootNode;
+                    root.position.set(positionX, positionY, positionZ);
+                    scene.add(root);
+                });
+            });
+        }
 
-        scene.add(rocketPartsGroup);
-
-        var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 2 );
+        var light = new THREE.HemisphereLight( 0xffffbb, 0x080820, 1 );
         scene.add( light );
 
-        camera.position.z = 5;
+
+        // scene.add(rocketPartsThruster);
+        // scene.add(rocketPartsBody);
+        // scene.add(rocketPartsNose);
+
+
+        function spaceOBJs(rocketParts){
+            for (i = 0; i < rocketParts.length; i++) { 
+                console.log(i);
+            }
+        }
+
+        camera.position.z = 20;
+        camera.position.y = 10;
+
+        controls.target = new THREE.Vector3(0, 10, 0);
+
         controls.update();
 
         function animate() {
