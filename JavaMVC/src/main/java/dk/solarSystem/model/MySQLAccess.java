@@ -130,7 +130,7 @@ public class MySQLAccess {
         return moons;
     }
 
-    public ArrayList<MazeGoal> GetMazeGoal(String planetName){
+    public java.lang.Object GetMazeGoal(String planetName){
         ArrayList<MazeGoal> mazes = new ArrayList<MazeGoal>();
 
         try {

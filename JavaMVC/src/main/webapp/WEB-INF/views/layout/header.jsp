@@ -37,6 +37,9 @@
                         <li class="nav-item">
                                 <a class="nav-link" href="${contextPath}/rocketbuild">Build A Rocket</a>
                         </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="${contextPath}/maze">Maze</a>
+                            </li>
                         <li class="nav-item">
                                 <a class="nav-link disabled" href="#">Disabled</a>
                         </li>

@@ -5,10 +5,14 @@
       Time: 10:45
       To change this template use File | Settings | File Templates.
     --%>
-        <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-        <%@include file="layout/header.jsp"%>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-        <h1>${mazeInfo}</h1>
+    <%@include file="layout/header.jsp"%>
+
+        <h1>${test}</h1>
+
+        <canvas id="mazecanvas"></canvas>
 
         <script>
         var canvas = document.getElementById("mazecanvas");
@@ -22,9 +26,7 @@
         const correctColorRnd = Math.floor(Math.random() * 3);
         const selectedGoalColor = rgbGoalColors[correctColorRnd];
 
-        var mazes = ["../Picture/Mercury.png", "../Picture/Venus.png", "../Picture/Mars.png", "../Picture/Jupiter.png",
-        "../Picture/Saturn.png", "../Picture/Uranus.png", "../Picture/Neptune.png", "../Picture/Pluto.png"];
-        const selectedMaze = mazes[Math.floor(Math.random()*9)];
+        const selectedQuestion = Math.floor(Math.random()*2);
 
         var currentX = 0;
         var currentY = 0;
@@ -33,15 +35,33 @@
 
         var mazeImg = new Image();
         var playerImg = new Image();
-
         var goalTask;
         var goalSoloution;
+        var fillerAnswers;
 
-        function loadVariables(maze, goalText, goalAnswer) {
-        mazeImg.src=maze;
-        playerImg.src="../Picture/player.png";
-        goalTask = goalText;
-        goalSoloution = goalAnswer;
+        var counter = 0;
+        <c:forEach var="maze" items="${mazeInfo}">
+        if (counter === selectedQuestion){
+                mazeImg.src=${maze.imgSrc};
+                playerImg.src="../Picture/player.png";
+                goalTask = ${maze.questionText};
+                goalSoloution = ${maze.answer};
+        }
+        counter++;
+        </c:forEach>
+        if (selectedQuestion === 1){
+                fillerAnswers = [goalSoloution+3, goalSoloution-2];
+        }
+        else{
+                if(goalSoloution === "Solid"){
+                        fillerAnswers = ["Gas", "Sol"];
+                }
+                else if(goalSoloution === "Gas"){
+                        fillerAnswers = ["Solid", "Dværg"];
+                }
+                else if(goalSoloution === "Dværg"){
+                        fillerAnswers = ["Gas", "Solid"];
+                }
         }
 
         function mazeStart(X, Y){
@@ -52,14 +72,14 @@
         };
 
         function loadMaze(){
-        mazeImg.src=selectedMaze;
+        //mazeImg.src=selectedMaze;
         mazeImg.onload = function(){
         updateMaze();
         }
         }
 
         function updateMaze(){
-        playerImg.src="../Picture/player.png"
+        //playerImg.src="../Picture/player.png"
         playerImg.onload = function(){
         context.drawImage(mazeImg, 0, 0);
         circleColors();
@@ -140,6 +160,8 @@
         context.textBaseLine = "middle";
         context.fillText("Godt klaret, du vil blive sendt tilbage om lidt", canvas.width / 2, canvas.height / 2);
         window.removeEventListener("keydown", movePlayer, true);
+        setTimeout('', 5000);
+        history.go(-1);
         }
         }
 
@@ -181,24 +203,22 @@
         context.textBaseLine="middle";
         context.fillText(goalTask, 221, mazeHeightY+20, 300);
 
-        //"rgb("+color[0]+", "+color[1]+", "+color[2]+")"
-
         switch(correctColorRnd){
         case 0:
         context.fillText(goalSoloution+" = rød", 221, mazeHeightY+40, 300);
-        context.fillText(Math.floor(Math.random() * 10)+" = grøn", 221, mazeHeightY+60, 300);
-        context.fillText(Math.floor(Math.random() * 10)+" = blå", 221, mazeHeightY+80, 300);
+        context.fillText(fillerAnswers[0]+" = grøn", 221, mazeHeightY+60, 300);
+        context.fillText(fillerAnswers[1]+" = blå", 221, mazeHeightY+80, 300);
         break;
 
         case 1:
-        context.fillText(Math.floor(Math.random() * 10)+" = rød", 221, mazeHeightY+40, 300);
+        context.fillText(fillerAnswers[1]+" = rød", 221, mazeHeightY+40, 300);
         context.fillText(goalSoloution+" = grøn", 221, mazeHeightY+60, 300);
-        context.fillText(Math.floor(Math.random() * 10)+" = blå", 221, mazeHeightY+80, 300);
+        context.fillText(fillerAnswers[0]+" = blå", 221, mazeHeightY+80, 300);
         break;
 
         case 2:
-        context.fillText(Math.floor(Math.random() * 10)+" = rød", 221, mazeHeightY+40, 300);
-        context.fillText(Math.floor(Math.random() * 10)+" = grøn", 221, mazeHeightY+60, 300);
+        context.fillText(fillerAnswers[0]+" = rød", 221, mazeHeightY+40, 300);
+        context.fillText(fillerAnswers[1]+" = grøn", 221, mazeHeightY+60, 300);
         context.fillText(goalSoloution+" = blå", 221, mazeHeightY+80, 300);
         break;
         }
