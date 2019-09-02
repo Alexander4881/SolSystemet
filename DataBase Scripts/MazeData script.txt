@@ -1,9 +1,9 @@
 INSERT INTO mazedata (PlanetName, ImgSrc) VALUES
-('Merkur', '../Picture/Mercury.png'),
-('Venus', '../Picture/Venus.png'),
-('Mars', '../Picture/Mars.png'),
-('Jupiter', '../Picture/Jupiter.png'),
-('Saturn', '../Picture/Saturn.png'),
-('Uranus', '../Picture/Uranus.png'),
-('Neptun', '../Picture/Neptune.png'),
-('Pluto', '../Picture/Pluto.png');
+('Merkur', './resources/mazeimg/Mercury.png'),
+('Venus', './resources/mazeimg/Venus.png'),
+('Mars', './resources/mazeimg/Mars.png'),
+('Jupiter', './resources/mazeimg/Jupiter.png'),
+('Saturn', './resources/mazeimg/Saturn.png'),
+('Uranus', './resources/mazeimg/Uranus.png'),
+('Neptun', './resources/mazeimg/Neptune.png'),
+('Pluto', './resources/mazeimg/Pluto.png');

@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS `SolarSystem`;
+﻿DROP DATABASE IF EXISTS `SolarSystem`;
 CREATE DATABASE `SolarSystem`;
 
 USE `SolarSystem`;
@@ -911,19 +911,28 @@ INSERT INTO planet3dinfo
 ('Pluto', '/resources/texture/pluto.jpg', 0.2, 170, 90520, 0.015);
 
 INSERT INTO moon3dinfo 
-(moonName,	PlanetName,		moonTextureSrc, 					moonSize, 	DistanceFromPlanet, OrbitRate, 	RotationRate, 	OrbitSize, 	InnerSize, 	FaceRoundness, 	FaceDigRound, 	Color) VALUES
-('månen',	'Jorden', 		'/resources/texture/moon.jpg', 		0.5, 		2.8, 				27, 		0.02, 			2.8, 		0.01, 		480, 			480, 			'0x757064'),
-('saturnRing','Saturn', 	'null.jpg', 						0, 			0, 					0, 			0, 				11.3, 		2, 			2, 				480, 			'0x8D7E60');
+(moonName, PlanetName, moonTextureSrc, moonSize, DistanceFromPlanet, OrbitRate, RotationRate, OrbitSize, InnerSize, FaceRoundness, FaceDigRound, Color) VALUES
+('månen', 'Jorden', '/resources/texture/moon.jpg', 0.5, 2.8, 27, 0.02, 2.8, 0.01, 480, 480, '0x757064'),
+('saturnRing','Saturn', 'null.jpg', 0, 0, 0, 0, 11.3, 2, 2, 480, '0x8D7E60');
 
-INSERT INTO mazedata (PlanetName, ImgSrc) VALUES
-('Merkur', '../Picture/Mercury.png'),
-('Venus', '../Picture/Venus.png'),
-('Mars', '../Picture/Mars.png'),
-('Jupiter', '../Picture/Jupiter.png'),
-('Saturn', '../Picture/Saturn.png'),
-('Uranus', '../Picture/Uranus.png'),
-('Neptun', '../Picture/Neptune.png'),
-('Pluto', '../Picture/Pluto.png');
+INSERT INTO mazedata 
+(PlanetName, ImgSrc) VALUES
+
+('Merkur', './resources/mazeimg/Mercury.png'),
+
+('Venus', './resources/mazeimg/Venus.png'),
+
+('Mars', './resources/mazeimg/Mars.png'),
+
+('Jupiter', './resources/mazeimg/Jupiter.png'),
+
+('Saturn', './resources/mazeimg/Saturn.png'),
+
+('Uranus', './resources/mazeimg/Uranus.png'),
+
+('Neptun', './resources/mazeimg/Neptune.png'),
+
+('Pluto', './resources/mazeimg/Pluto.png');
 
 
 INSERT INTO mazequestion (Question, QuestionText) VALUES

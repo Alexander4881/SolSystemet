@@ -10,9 +10,11 @@
 
     <%@include file="layout/header.jsp"%>
 
-        <h1>${test}</h1>
+        <h2>${test}</h2>
 
-        <canvas id="mazecanvas"></canvas>
+    <canvas width="800" height="600" id="mazecanvas">Can't load the maze game, because your browser doesn't support HTML5.</canvas>
+    <noscript>JavaScript is not enabled. To play the game, you should enable it.</noscript>
+    <script src="./resources/javascript/jquery-3.4.1.js"></script>
 
         <script>
         var canvas = document.getElementById("mazecanvas");
@@ -33,6 +35,7 @@
         var mazeWidthX = 442;
         var mazeHeightY = 442;
 
+        var mazeImgSrc;
         var mazeImg = new Image();
         var playerImg = new Image();
         var goalTask;
@@ -42,10 +45,9 @@
         var counter = 0;
         <c:forEach var="maze" items="${mazeInfo}">
         if (counter === selectedQuestion){
-                mazeImg.src=${maze.imgSrc};
-                playerImg.src="../Picture/player.png";
-                goalTask = ${maze.questionText};
-                goalSoloution = ${maze.answer};
+                mazeImgSrc="${maze.imgSrc}";
+                goalTask = "${maze.questionText}";
+                goalSoloution = "${maze.answer}";
         }
         counter++;
         </c:forEach>
@@ -69,17 +71,17 @@
         currentY = Y;
         loadMaze();
         console.log("mazestart");
-        };
+        }
 
         function loadMaze(){
-        //mazeImg.src=selectedMaze;
+        mazeImg.src=mazeImgSrc;
         mazeImg.onload = function(){
         updateMaze();
         }
         }
 
         function updateMaze(){
-        //playerImg.src="../Picture/player.png"
+        playerImg.src="./resources/images/player.png";
         playerImg.onload = function(){
         context.drawImage(mazeImg, 0, 0);
         circleColors();
@@ -160,8 +162,9 @@
         context.textBaseLine = "middle";
         context.fillText("Godt klaret, du vil blive sendt tilbage om lidt", canvas.width / 2, canvas.height / 2);
         window.removeEventListener("keydown", movePlayer, true);
-        setTimeout('', 5000);
-        history.go(-1);
+                sleep(5000).then(() => {
+                        history.go(-1);
+                })
         }
         }
 
@@ -222,6 +225,10 @@
         context.fillText(goalSoloution+" = blå", 221, mazeHeightY+80, 300);
         break;
         }
+        }
+
+        const sleep = (milliseconds) => {
+                return new Promise(resolve => setTimeout(resolve, milliseconds))
         }
 
         //loadVariables();
