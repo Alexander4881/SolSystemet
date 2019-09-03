@@ -41,7 +41,7 @@
                 <div class="col-sm-8 mt-2">
                     <div class="progress">
                         <div id="rocket-progression" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                             aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
+                             aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
                         </div>
                     </div>
                 </div>
@@ -53,34 +53,36 @@
 
     <tr class="h-25">
         <td>
-            <button type="button" class="btn btn-dark ml-5" onclick="changeRocketPart('head',false)"><</button>
+            <button type="button" class="btn btn-outline-success ml-5" onclick="changeRocketPart('head',false)"><</button>
         </td>
         <td rowspan="3">
         </td>
         <td>
-            <button type="button" class="btn btn-dark float-right mr-5" onclick="changeRocketPart('head',true)">></button>
+            <button type="button" class="btn btn-outline-success float-right mr-5" onclick="changeRocketPart('head',true)">></button>
         </td>
     </tr>
 
     <tr class="h-25">
         <td>
-            <button type="button" class="btn btn-dark ml-5" onclick="changeRocketPart('body',false)"><</button>
+            <button type="button" class="btn btn-outline-success ml-5" onclick="changeRocketPart('body',false)"><</button>
         </td>
         <td>
-            <button type="button" class="btn btn-dark float-right mr-5" onclick="changeRocketPart('body',true)">></button>
+            <button type="button" class="btn btn-outline-success float-right mr-5" onclick="changeRocketPart('body',true)">></button>
         </td>
     </tr>
 
     <tr class="h-25">
         <td>
-            <button type="button" class="btn btn-dark ml-5" onclick="changeRocketPart('thruster',false)"><</button>
+            <button type="button" class="btn btn-outline-success ml-5" onclick="changeRocketPart('thruster',false)"><</button>
         </td>
         <td>
-            <button type="button" class="btn btn-dark float-right mr-5" onclick="changeRocketPart('thruster',true)">></button>
+            <button type="button" class="btn btn-outline-success float-right mr-5" onclick="changeRocketPart('thruster',true)">></button>
         </td>
     </tr>
     <tr class="h-10 text-center">
-        <td colspan="3"><button type="button" class="btn btn-outline-success">Start Rumraket</button></td>
+        <td colspan="3">
+            <button type="button" onclick="playButton()" class="btn btn-outline-success">Start Rumraket</button>
+        </td>
     </tr>
     </tbody>
 </table>
@@ -89,11 +91,13 @@
 <script src="<c:url value="/resources/javascript/LoaderSupport.js"/>"></script>
 <script src="<c:url value="/resources/javascript/MTLLoader.js"/>"></script>
 <script src="<c:url value="/resources/javascript/OBJLoader2.js"/>"></script>
+<script src="<c:url value="/resources/javascript/tween.js"/>"></script>
 
 
 <script>
     let scene = new THREE.Scene();
-    let camera = new THREE.PerspectiveCamera(75, $('#webgl').innerWidth() / $('#webgl').innerHeight(), 0.1, 1000);
+    let camera = new THREE.PerspectiveCamera(45, $('#webgl').innerWidth() / $('#webgl').innerHeight(), 0.1, 1000);
+    let playAsteroids, cameraTransitions = false;
 
     let renderer = new THREE.WebGLRenderer();
 
@@ -104,7 +108,7 @@
             </c:if>
         </c:forEach>
     ];
-    let headSelected = 1;
+    let headSelected = 0;
     heads.forEach(rocketHead => {
         loadOBJ(rocketHead.ObjPath, rocketHead.MltPath, rocketHead.StartPositionY, rocketHead
             .StartPositionX, rocketHead.StartPositionZ, rocketHead.Name);
@@ -117,7 +121,7 @@
             </c:if>
         </c:forEach>
     ];
-    let bodySelected = 1;
+    let bodySelected = 0;
     body.forEach(rocketBody => {
         loadOBJ(rocketBody.ObjPath, rocketBody.MltPath, rocketBody.StartPositionY, rocketBody
             .StartPositionX, rocketBody.StartPositionZ, rocketBody.Name);
@@ -130,12 +134,27 @@
             </c:if>
         </c:forEach>
     ];
-    let thrusterSelected = 1;
+    let thrusterSelected = 0;
     thruster.forEach(rocketThruster => {
         loadOBJ(rocketThruster.ObjPath, rocketThruster.MltPath, rocketThruster.StartPositionY,
             rocketThruster.StartPositionX, rocketThruster.StartPositionZ, rocketThruster.Name);
     });
 
+    const loader = new THREE.TextureLoader();
+    <c:forEach var="planet" items="${planets}">
+    let ${planet.name}Geometry = new THREE.SphereGeometry( ${planet.size}, 48, 48 );
+    loader.load('${planet.textureSrc}', (texture) => {
+        const material = new THREE.MeshBasicMaterial({
+            map: texture,
+        });
+        const ${planet.name} = new THREE.Mesh(${planet.name}Geometry, material);
+        ${planet.name}.name = "${planet.name}";
+        ${planet.name}.position.set(${planet.size + 20},${planet.distanceFromCenter + 400},0);
+        ${planet.name}.rotateX(1.5707963268);
+        scene.add(${planet.name});
+
+    });
+    </c:forEach>
 
     let geometry = new THREE.PlaneGeometry(15, 100, 0);
     let material = new THREE.MeshBasicMaterial({
@@ -143,11 +162,12 @@
         side: THREE.DoubleSide
     });
     var plane = new THREE.Mesh(geometry, material);
+    plane.name = "background";
     scene.add(plane);
     plane.position.set(0, 0, -10);
 
     renderer.setSize($('#webgl').innerWidth(), $('#webgl').innerHeight());
-    renderer.setClearColor(0x6ee3f5, 1);
+    renderer.setClearColor(0x204dc9, 1);
     $('#webgl').append(renderer.domElement);
 
     /**
@@ -186,7 +206,7 @@
         });
     }
 
-    var light = new THREE.PointLight(0xffffff, 1, 200);
+    let light = new THREE.PointLight(0xffffff, 1, 200);
     light.position.set(50, 50, 50);
     scene.add(light);
 
@@ -263,13 +283,99 @@
 
     function setProgressionBar(){
 
-        $('#rocket-progression').width((heads[headSelected].Value + body[bodySelected].Value + thruster[thrusterSelected].Value) + "%");
+        $("#rocket-progression").width((heads[headSelected].Value + body[bodySelected].Value + thruster[thrusterSelected].Value) + "%");
     }
 
-    function spaceOBJs(rocketParts) {
-        for (i = 0; i < rocketParts.length; i++) {
-            console.log(i);
+    // hide the controls make an animation
+    function hideControls() {
+        $(".controls").hide();
+    }
+
+    function removeEntity(name) {
+        console.log("removing element " + name);
+        let selectedObject = scene.getObjectByName(name);
+        scene.remove( selectedObject );
+        animate();
+    }
+
+    function removeNotSelected() {
+        for (let i = 0; i < heads.length; i++){
+            if (i !== headSelected){
+                removeEntity(heads[i].Name)
+            }
         }
+
+        for (let i = 0; i < body.length; i++){
+            if (i !== bodySelected){
+                removeEntity(body[i].Name)
+            }
+        }
+
+        for (let i = 0; i < thruster.length; i++){
+            if (i !== thrusterSelected){
+                removeEntity(thruster[i].Name)
+            }
+        }
+    }
+
+    function playButton(){
+        hideControls();
+        playAsteroids = true;
+        cameraTransitions = true;
+
+        let selectedHead = heads[headSelected];
+        let selectedBody = body[bodySelected];
+        let selectedThruster = thruster[thrusterSelected];
+
+        removeEntity("background");
+
+        removeNotSelected();
+
+        let position = { x : 0, y: 5, z: 15 };
+        let target = { x : 0, y: 5, z:4 };
+        let tween = new TWEEN.Tween(position).to(target, 2000);
+
+        tween.onUpdate(function(){
+            camera.position.set(position.x,position.y,position.z);
+        });
+        tween.start();
+
+        let color = { r : 32, g: 77, b: 201 };
+        let targetColor = { r : 0, g: 0, b:0 };
+        let colorTween = new TWEEN.Tween(color).to(targetColor, 2000);
+
+        colorTween.onUpdate(function(){
+            renderer.setClearColor(new THREE.Color("rgb("+Math.round(color.r)+", "+Math.round(color.g)+", "+Math.round(color.b)+")"));
+        });
+        colorTween.start();
+
+        let lookPosition = { x : 0, y: -5, z: 0 };
+        let lookTarget = { x : 0, y: 300, z:0 };
+        let lookTween = new TWEEN.Tween(lookPosition).to(lookTarget, 2000);
+        lookTween.onUpdate(function () {
+            camera.lookAt(new THREE.Vector3(lookPosition.x,lookPosition.y,lookPosition.z));
+        });
+        lookTween.onComplete(function () {
+            let movePosition = { y: 5 };
+            let moveTarget = { y: 500 };
+            let moveTween = new TWEEN.Tween(movePosition).to(moveTarget, 60000);
+            moveTween.onUpdate(function () {
+                camera.position.set(0 , movePosition.y, 4);
+
+                scene.getObjectByName(selectedHead.Name).position.y = movePosition.y + selectedHead.StartPositionY;
+                scene.getObjectByName(selectedBody.Name).position.y = movePosition.y + selectedBody.StartPositionY;
+                scene.getObjectByName(selectedThruster.Name).position.y = movePosition.y + selectedThruster.StartPositionY;
+
+                scene.children[0].position.y = movePosition.y + 50;
+            });
+            moveTween.onComplete(function () {
+                cameraTransitions = false;
+                console.log("done");
+            });
+            moveTween.start();
+
+        });
+        lookTween.start();
     }
 
     camera.position.z = 15;
@@ -277,6 +383,13 @@
 
     function animate() {
         requestAnimationFrame(animate);
+
+        if (playAsteroids){
+            if (cameraTransitions){
+                TWEEN.update();
+            }
+        }
+
         renderer.render(scene, camera);
     }
     animate();
