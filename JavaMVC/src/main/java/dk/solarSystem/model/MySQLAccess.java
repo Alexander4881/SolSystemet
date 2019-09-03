@@ -156,6 +156,50 @@ public class MySQLAccess {
         return mazes;
     };
 
+    // get all planets information
+    public ArrayList<Planet3DInformation> GetRocketParts (){
+
+        ArrayList<Planet3DInformation> planets = new ArrayList<Planet3DInformation>();
+
+        try {
+            ResultSet resultSet = MySQLQuarry("CALL `solarsystem`.`All3DPlanetInformation`();");
+
+            while (resultSet.next()){
+                Planet3DInformation planet3DInformation = new Planet3DInformation(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDouble(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getString(7),
+                        resultSet.getDouble(8),
+                        resultSet.getString(9),
+                        resultSet.getString(10),
+                        resultSet.getString(11),
+                        resultSet.getDouble(12),
+                        resultSet.getString(13),
+                        resultSet.getString(14),
+                        resultSet.getString(15),
+                        resultSet.getString(16),
+                        resultSet.getString(17),
+                        resultSet.getDouble(18),
+                        resultSet.getDouble(19),
+                        resultSet.getDouble(20),
+                        resultSet.getDouble(21)
+                );
+
+                planet3DInformation.setMoons(getMoonToPlanet(planet3DInformation.getName()));
+
+                planets.add(planet3DInformation);
+
+            }
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+        return planets;
+    }
+
     private void printResultSet(ResultSet resultSet) throws SQLException {
         // ResultSet is initially before the first data set
         while (resultSet.next()) {
