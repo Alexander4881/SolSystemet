@@ -3,6 +3,11 @@ body {
     overflow: hidden;
 }
 
+.controls{
+    position: absolute;
+    top: 0;
+}
+
 nav {
     z-index: 1;
 }
@@ -16,6 +21,14 @@ nav {
 
 .h-10{
     height: 10%!important;
+}
+
+.h-100{
+    height: 100vh!important;
+}
+
+.display-4{
+    text-transform: capitalize;
 }
 
 .container-fluid {
@@ -45,6 +58,10 @@ nav {
     height: 100vh;
     background-color: hsla(0, 0%, 0%, 0.40);
     color: white;
+}
+
+.rocket-background{
+    background-color: #6ee3f5;
 }
 
 .hide {

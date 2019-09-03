@@ -14,6 +14,10 @@ public class RocketBuildController {
     @RequestMapping(method = RequestMethod.GET)
     public String Index(ModelMap model){
 
+        MySQLAccess mySQLAccess = new MySQLAccess();
+
+        model.addAttribute("parts", mySQLAccess.GetRocketParts());
+
         return "rocketbuild";
     }
 }

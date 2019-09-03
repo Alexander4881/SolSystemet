@@ -17,21 +17,21 @@
             <h1 class="display-4 text-center">byg din egen rumraket</h1>
             <div class="row">
                 <div class="col-sm-2"></div>
-                <div class="col-sm d-flex justify-content-center"><img src="./images/Mercury.png" height="50"
+                <div class="col-sm d-flex justify-content-center"><img src="./resources/images/Mercury.png" height="50"
                                                                        alt="mercury image"></div>
-                <div class="col-sm d-flex justify-content-center"><img src="./images/Venus.png" height="50"
+                <div class="col-sm d-flex justify-content-center"><img src="./resources/images/Venus.png" height="50"
                                                                        alt="venus image"></div>
-                <div class="col-sm d-flex justify-content-center"><img src="./images/Earth.png" height="50"
+                <div class="col-sm d-flex justify-content-center"><img src="./resources/images/Earth.png" height="50"
                                                                        alt="earth image"></div>
-                <div class="col-sm d-flex justify-content-center"><img src="./images/Mars.png" height="50"
+                <div class="col-sm d-flex justify-content-center"><img src="./resources/images/Mars.png" height="50"
                                                                        alt="mars image"></div>
-                <div class="col-sm d-flex justify-content-center"><img src="./images/Jupiter.png" height="50"
+                <div class="col-sm d-flex justify-content-center"><img src="./resources/images/Jupiter.png" height="50"
                                                                        alt="jupiter image"></div>
-                <div class="col-sm d-flex justify-content-center"><img src="./images/Saturn.png" height="50"
+                <div class="col-sm d-flex justify-content-center"><img src="./resources/images/Saturn.png" height="50"
                                                                        alt="saturn image"></div>
-                <div class="col-sm d-flex justify-content-center"><img src="./images/Uranus.png" height="50"
+                <div class="col-sm d-flex justify-content-center"><img src="./resources/images/Uranus.png" height="50"
                                                                        alt="uranus image"></div>
-                <div class="col-sm d-flex justify-content-center"><img src="./images/Neptune.png" height="50"
+                <div class="col-sm d-flex justify-content-center"><img src="./resources/images/Neptune.png" height="50"
                                                                        alt="neptune image"></div>
                 <div class="col-sm-2"></div>
             </div>
@@ -86,9 +86,9 @@
 </table>
 
 <script src="./resources/javascript/three.js"></script>
-<script src="./resources/javascript/LoaderSupport.js"></script>
-<script src="./resources/javascript/MTLLoader.js"></script>
-<script src="./resources/javascript/OBJLoader2.js"></script>
+<script src="<c:url value="/resources/javascript/LoaderSupport.js"/>"></script>
+<script src="<c:url value="/resources/javascript/MTLLoader.js"/>"></script>
+<script src="<c:url value="/resources/javascript/OBJLoader2.js"/>"></script>
 
 
 <script>
@@ -97,12 +97,12 @@
 
     let renderer = new THREE.WebGLRenderer();
 
-    const heads = [constructRocketPart("RocketHead_001", "./CSS/3DObjects/RocketNose_001.obj",
-        "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0, 33),
-        constructRocketPart("RocketHead_002", "./CSS/3DObjects/RocketNose_002.obj",
-            "./CSS/3DObjects/RocketNose_002.mtl", 9.3, 8, 0, 20),
-        constructRocketPart("RocketHead_003", "./CSS/3DObjects/RocketNose_003.obj",
-            "./CSS/3DObjects/RocketNose_003.mtl", 9.3, -8, 0, 10)
+    const heads = [
+        <c:forEach var="rocketPart" items="${parts}">
+            <c:if test="${rocketPart.rocketPartType=='Nose'}">
+                constructRocketPart("${rocketPart.name}", "${rocketPart.objPath}", "${rocketPart.mtlPath}", ${rocketPart.positionY}, ${rocketPart.positionX}, ${rocketPart.positionZ},${rocketPart.power}),
+            </c:if>
+        </c:forEach>
     ];
     let headSelected = 1;
     heads.forEach(rocketHead => {
@@ -110,12 +110,12 @@
             .StartPositionX, rocketHead.StartPositionZ, rocketHead.Name);
     });
 
-    const body = [constructRocketPart("Body_001", "./CSS/3DObjects/RocketBody_001.obj",
-        "./CSS/3DObjects/RocketBody_001.mtl", 4, 0, 0, 30),
-        constructRocketPart("Body_002", "./CSS/3DObjects/RocketBody_002.obj",
-            "./CSS/3DObjects/RocketBody_002.mtl", 4, 8, 0, 20),
-        constructRocketPart("Body_003", "./CSS/3DObjects/RocketBody_003.obj",
-            "./CSS/3DObjects/RocketBody_003.mtl", 4, -8, 0, 12)
+    const body = [
+        <c:forEach var="rocketPart" items="${parts}">
+            <c:if test="${rocketPart.rocketPartType=='Body'}">
+                constructRocketPart("${rocketPart.name}", "${rocketPart.objPath}", "${rocketPart.mtlPath}", ${rocketPart.positionY}, ${rocketPart.positionX}, ${rocketPart.positionZ}, ${rocketPart.power}),
+            </c:if>
+        </c:forEach>
     ];
     let bodySelected = 1;
     body.forEach(rocketBody => {
@@ -123,12 +123,12 @@
             .StartPositionX, rocketBody.StartPositionZ, rocketBody.Name);
     });
 
-    const thruster = [constructRocketPart("Rocket_001", "./CSS/3DObjects/RocketThruster_001.obj",
-        "./CSS/3DObjects/RocketThruster_001.mtl", 0, 0, 0, 25),
-        constructRocketPart("Rocket_002", "./CSS/3DObjects/RocketThruster_002.obj",
-            "./CSS/3DObjects/RocketThruster_002.mtl", 0, 8, 0, 30),
-        constructRocketPart("Rocket_003", "./CSS/3DObjects/RocketThruster_003.obj",
-            "./CSS/3DObjects/RocketThruster_003.mtl", 0, -8, 0, 33)
+    const thruster = [
+        <c:forEach var="rocketPart" items="${parts}">
+            <c:if test="${rocketPart.rocketPartType=='Thruster'}">
+                constructRocketPart("${rocketPart.name}", "${rocketPart.objPath}", "${rocketPart.mtlPath}", ${rocketPart.positionY}, ${rocketPart.positionX}, ${rocketPart.positionZ}, ${rocketPart.power}),
+            </c:if>
+        </c:forEach>
     ];
     let thrusterSelected = 1;
     thruster.forEach(rocketThruster => {
@@ -137,8 +137,8 @@
     });
 
 
-    var geometry = new THREE.PlaneGeometry(15, 100, 0);
-    var material = new THREE.MeshBasicMaterial({
+    let geometry = new THREE.PlaneGeometry(15, 100, 0);
+    let material = new THREE.MeshBasicMaterial({
         color: 0xf0f000,
         side: THREE.DoubleSide
     });
