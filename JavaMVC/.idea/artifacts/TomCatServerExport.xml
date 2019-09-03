@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TomCatServerExport">
+    <output-path>$PROJECT_DIR$/out/artifacts/TomCatServerExport</output-path>
+    <root id="archive" name="SolarSystemMVC_war.war">
+      <element id="artifact" artifact-name="SolarSystemMVC:war exploded" />
+    </root>
+  </artifact>
+</component>
