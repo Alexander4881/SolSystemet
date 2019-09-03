@@ -357,7 +357,7 @@
         });
         lookTween.onComplete(function () {
             let movePosition = { y: 5 };
-            let moveTarget = { y: 520 };
+            let moveTarget = { y: 540 };
             let moveTween = new TWEEN.Tween(movePosition).to(moveTarget, 60000);
             moveTween.onUpdate(function () {
                 camera.position.set(0 , movePosition.y, 4);
@@ -389,6 +389,11 @@
                 TWEEN.update();
             }
         }
+
+        <c:forEach var="planet" items="${planets}">
+        scene.getObjectByName("${planet.name}").rotateY(0.0001);
+        scene.getObjectByName("${planet.name}").rotateZ(0.00001);
+        </c:forEach>
 
         renderer.render(scene, camera);
     }
