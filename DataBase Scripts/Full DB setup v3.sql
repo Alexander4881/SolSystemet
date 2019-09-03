@@ -172,6 +172,25 @@ CREATE TABLE `MazeQuestion` (
 );
 
 -- ---
+-- Table 'RocketParts'
+--
+-- ---
+
+DROP TABLE IF EXISTS `RocketParts`;
+		
+CREATE TABLE `RocketParts` (
+  `Name` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `OBJPath` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `MTLPath` VARCHAR(255) NOT NULL DEFAULT 'NULL',
+  `Power` DOUBLE NOT NULL DEFAULT 0.00,
+  `PositionY` DOUBLE NOT NULL DEFAULT 0.00,
+  `PositionX` DOUBLE NOT NULL DEFAULT 0.00,
+  `PositionZ` DOUBLE NOT NULL DEFAULT 0.00,
+  `RocketPartType`VARCHAR(30) NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`Name`)
+);
+
+-- ---
 -- Foreign Keys 
 -- ---
 
@@ -899,28 +918,28 @@ VALUES ('Pluto',
 
 INSERT INTO planet3dinfo 
 (PlanetName, PlanetTextureSrc, PlanetSize, DistanceFromCenter, OrbitRate, RotationRate) VALUES
-('Solen', '/resources//texture/sun.jpg', 50, 0, 1, 0.001),
-('Merkur', '/resources/texture/mercury.jpg', 0.38, 57, 80, 0.0015),
-('Venus', '/resources/texture/venus.jpg', 0.8, 65, 225, 0.015),
-('Jorden', '/resources/texture/earth.jpg', 1, 80, 365, 0.024),
-('Mars', '/resources/texture/mars.jpg', 0.5, 90, 687, 0.015),
-('Jupiter', '/resources/texture/jupiter.jpg', 8, 110, 4380, 0.015),
-('Saturn', '/resources/texture/saturn.jpg', 8, 135, 10585, 0.005),
-('Uranus', '/resources/texture/uranus.jpg', 3, 152, 30660, 0.015),
-('Neptun', '/resources/texture/neptune.jpg', 3, 160, 60225, 0.015),
-('Pluto', '/resources/texture/pluto.jpg', 0.2, 170, 90520, 0.015);
+('Solen', './resources//texture/sun.jpg', 50, 0, 1, 0.001),
+('Merkur', './resources/texture/mercury.jpg', 0.38, 57, 80, 0.0015),
+('Venus', './resources/texture/venus.jpg', 0.8, 65, 225, 0.015),
+('Jorden', './resources/texture/earth.jpg', 1, 80, 365, 0.024),
+('Mars', './resources/texture/mars.jpg', 0.5, 90, 687, 0.015),
+('Jupiter', './resources/texture/jupiter.jpg', 8, 110, 4380, 0.015),
+('Saturn', './resources/texture/saturn.jpg', 8, 135, 10585, 0.005),
+('Uranus', './resources/texture/uranus.jpg', 3, 152, 30660, 0.015),
+('Neptun', './resources/texture/neptune.jpg', 3, 160, 60225, 0.015),
+('Pluto', './resources/texture/pluto.jpg', 0.2, 170, 90520, 0.015);
 
 INSERT INTO moon3dinfo 
 (moonName, PlanetName, moonTextureSrc, moonSize, DistanceFromPlanet, OrbitRate, RotationRate, OrbitSize, InnerSize, FaceRoundness, FaceDigRound, Color) VALUES
-('månen', 'Jorden', '/resources/texture/moon.jpg', 0.5, 2.8, 27, 0.02, 2.8, 0.01, 480, 480, '0x757064'),
-('saturnRing','Saturn', 'null.jpg', 0, 0, 0, 0, 11.3, 2, 2, 480, '0x8D7E60');
+('månen', 'Jorden', './resources/texture/moon.jpg', 0.5, 2.8, 27, 0.02, 2.8, 0.01, 480, 480, '0x757064'),
+('saturnRing','Saturn', './resources/texture/null.jpg', 0, 0, 0, 0, 11.3, 2, 2, 480, '0x8D7E60');
 
 INSERT INTO mazedata 
 (PlanetName, ImgSrc) VALUES
-('Sol', './resources/mazeimg/Pluto.png'),
+('Solen', './resources/mazeimg/Pluto.png'),
 ('Merkur', './resources/mazeimg/Mercury.png'),
 ('Venus', './resources/mazeimg/Venus.png'),
-('Jorden', './resources/mazeimg/Earth.png'),
+('Jorden', './resources/mazeimg/Pluto.png'),
 ('Mars', './resources/mazeimg/Mars.png'),
 ('Jupiter', './resources/mazeimg/Pluto.png'),
 ('Saturn', './resources/mazeimg/Saturn.png'),
@@ -943,6 +962,18 @@ INSERT INTO mazequestionanswer (PlanetName, Question, Answer) VALUES
 ('Uranus', 'PlanetNumber', '7'), ('Uranus', 'PlanetMass', 'Gas'),
 ('Neptun', 'PlanetNumber', '8'), ('Neptun', 'PlanetMass', 'Gas'),
 ('Pluto', 'PlanetNumber', '9'), ('Pluto', 'PlanetMass', 'Dværg');
+
+INSERT INTO rocketparts
+(objpath, mtlpath, positiony, positionx, positionz, name, power, rocketparttype) VALUES
+("./resources/objects/RocketNose_001.obj", "./resources/objects/RocketNose_001.mtl", 9.3, 0, 0, "RocketNose_001", 1, "Nose"),
+("./resources/objects/RocketNose_002.obj", "./resources/objects/RocketNose_002.mtl", 9.3, 8, 0, "RocketNose_002", 1, "Nose"),
+("./resources/objects/RocketNose_003.obj", "./resources/objects/RocketNose_003.mtl", 9.3, -8, 0, "RocketNose_003", 1, "Nose"),
+("./resources/objects/RocketBody_001.obj", "./resources/objects/RocketBody_001.mtl", 4, 0, 0, "RocketBody_001", 1, "Body"),
+("./resources/objects/RocketBody_002.obj", "./resources/objects/RocketBody_002.mtl", 4, 8, 0, "RocketBody_002", 1, "Body"),
+("./resources/objects/RocketBody_003.obj", "./resources/objects/RocketBody_003.mtl", 4, -8, 0, "RocketBody_003", 1, "Body"),
+("./resources/objects/RocketThruster_001.obj", "./resources/objects/RocketThruster_001.mtl", 0, 0, 0, "RocketThruster_001", 1, "Thruster"),
+("./resources/objects/RocketThruster_002.obj", "./resources/objects/RocketThruster_002.mtl", 0, 8, 0, "RocketThruster_002", 1, "Thruster"),
+("./resources/objects/RocketThruster_003.obj", "./resources/objects/RocketThruster_003.mtl", 0, -8, 0, "RocketThruster_003", 1, "Thruster");
 
 DROP PROCEDURE IF EXISTS `All3DPlanetInformation`
 DELIMITER //
@@ -1007,5 +1038,27 @@ BEGIN
     
 	FROM solarsystem.moon3dinfo 
 	WHERE solarsystem.moon3dinfo.PlanetName = `@PlanetName`;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `MazeGoal`
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `MazeGoal`(IN `@PlanetName` VARCHAR(255))
+BEGIN
+SELECT solarsystem.mazedata.PlanetName,
+solarsystem.mazedata.ImgSrc, solarsystem.mazequestionanswer.Question, 
+solarsystem.mazequestion.QuestionText, solarsystem.mazequestionanswer.Answer
+FROM solarsystem.mazedata
+INNER JOIN solarsystem.mazequestionanswer ON solarsystem.mazedata.PlanetName = solarsystem.mazequestionanswer.PlanetName
+INNER JOIN solarsystem.mazequestion ON solarsystem.mazequestionanswer.Question = solarsystem.mazequestion.Question
+WHERE solarsystem.mazedata.PlanetName = `@PlanetName`;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS `GetRocketParts`
+DELIMITER //
+CREATE DEFINER=`root`@`localhost` PROCEDURE `GetRocketParts`()
+BEGIN
+SELECT * FROM solarsystem.rocketparts;
 END //
 DELIMITER ;

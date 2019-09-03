@@ -79,3 +79,8 @@ benjamin sked i bukserne, jeg kan ikke huske det, vi glemte at skrive log om fre
 02-09 (24)
 i dag er der blevet lavet og nogle modeler til byg en rum raket og et par database opdatering der er også blevet lagt grund stene til at lave et bygge en rum raket
 labyrinten er blevet lavet færdig og sat op til at hente fra databasen, alt spiller som det gør (dårlig joke) og det eneste problem var at jeg ikke kunne få en pause funktion til at fungere
+
+03-09 (25)
+vores hjemmesider og database er blevet opretted på serveren, problemerne er blevet fikset og det hele køre som det skal, man kan connecte til hjemmesiden udefra, gennem server ip osv
+databasen har fået tilføjet "rocketparts" tabellen, med data i den og en stored procedure, så vi kan hente dataen ud, der er også blevet rettet i nogle dater, da der manglede punktum, for at få den rigtige path
+labyrinten og solsystems viewet er nu oppe og køre 100% og arbejdet på at lave den sidste side, rocketbuilderen er begyndt
