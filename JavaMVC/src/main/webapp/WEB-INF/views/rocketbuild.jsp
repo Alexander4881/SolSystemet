@@ -357,7 +357,7 @@
         });
         lookTween.onComplete(function () {
             let movePosition = { y: 5 };
-            let moveTarget = { y: 500 };
+            let moveTarget = { y: 520 };
             let moveTween = new TWEEN.Tween(movePosition).to(moveTarget, 60000);
             moveTween.onUpdate(function () {
                 camera.position.set(0 , movePosition.y, 4);
