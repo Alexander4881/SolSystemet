@@ -78,7 +78,7 @@
                         <h5 class="card-title">Diameter ${planet.diameterMeasuringUnit}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">${planet.diameterFullMeasuringUnit}</h6>
                         <p class="card-text">${planet.diameterDescription}</p>
-                        <a class="card-text" href="${contextPath}/maze?id=${planet.name}">Gå til planetens labyrint</a>
+                        <a class="card-text" href="${contextPath}/SolarSystemMVC_war/maze?id=${planet.name}">Gå til planetens labyrint</a>
                     </div>
                 </div>
 

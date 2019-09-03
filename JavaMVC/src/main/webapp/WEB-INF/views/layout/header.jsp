@@ -32,18 +32,11 @@
                                 <a class="nav-link" href="#">Planets<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link" href="${contextPath}/">Planet Information</a>
+                                <a class="nav-link" href="${contextPath}/SolarSystemMVC_war/">Planet Information</a>
                         </li>
                         <li class="nav-item">
-                                <a class="nav-link" href="${contextPath}/rocketbuild">Build A Rocket</a>
-                        </li>
-                        <li class="nav-item">
-                                <a class="nav-link disabled" href="#">Disabled</a>
+                                <a class="nav-link" href="${contextPath}/SolarSystemMVC_war/rocketbuild">Build A Rocket</a>
                         </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search For Planets" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
         </div>
         </nav>

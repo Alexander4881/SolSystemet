@@ -62,46 +62,59 @@
                     <h1 class="display-4 text-center">byg din egen rumraket</h1>
                     <div class="row">
                         <div class="col-sm-2"></div>
-                        <div class="col-sm d-flex justify-content-center"><img src="./images/Mercury.png" height="50" alt="mercury image"></div>
-                        <div class="col-sm d-flex justify-content-center"><img src="./images/Venus.png" height="50" alt="venus image"></div>
-                        <div class="col-sm d-flex justify-content-center"><img src="./images/Earth.png" height="50" alt="earth image"></div>
-                        <div class="col-sm d-flex justify-content-center"><img src="./images/Mars.png" height="50" alt="mars image"></div>
-                        <div class="col-sm d-flex justify-content-center"><img src="./images/Jupiter.png" height="50" alt="jupiter image"></div>
-                        <div class="col-sm d-flex justify-content-center"><img src="./images/Saturn.png" height="50" alt="saturn image"></div>
-                        <div class="col-sm d-flex justify-content-center"><img src="./images/Uranus.png" height="50" alt="uranus image"></div>
-                        <div class="col-sm d-flex justify-content-center"><img src="./images/Neptune.png" height="50" alt="neptune image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Mercury.png" height="50"
+                                alt="mercury image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Venus.png" height="50"
+                                alt="venus image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Earth.png" height="50"
+                                alt="earth image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Mars.png" height="50"
+                                alt="mars image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Jupiter.png" height="50"
+                                alt="jupiter image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Saturn.png" height="50"
+                                alt="saturn image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Uranus.png" height="50"
+                                alt="uranus image"></div>
+                        <div class="col-sm d-flex justify-content-center"><img src="./images/Neptune.png" height="50"
+                                alt="neptune image"></div>
                         <div class="col-sm-2"></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-2"></div>
-                        
+
                         <div class="col-sm-8 mt-2">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                    aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
                             </div>
                         </div>
-                        
+
                         <div class="col-sm-2"></div>
                     </div>
                 </td>
             </tr>
 
             <tr class="h-25">
-                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('head',false)"><</button> </td>
-                <td rowspan="3" id="webgl"></td>
-                <td> <button type="button" class="btn btn-dark float-right" onclick="changeRocketPart('head',true)">></button>
+                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('head',false)">
+                        <</button> </td> <td rowspan="3" id="webgl">
+                </td>
+                <td> <button type="button" class="btn btn-dark float-right"
+                        onclick="changeRocketPart('head',true)">></button>
                 </td>
             </tr>
 
             <tr class="h-25">
-                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('body',false)"><</button> </td>
-                <td> <button type="button" class="btn btn-dark float-right" onclick="changeRocketPart('body',true)">></button>
+                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('body',false)">
+                        <</button> </td> <td> <button type="button" class="btn btn-dark float-right"
+                                onclick="changeRocketPart('body',true)">></button>
                 </td>
             </tr>
 
             <tr class="h-25">
-                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('thruster',false)"><</button> </td>
-                <td> <button type="button" class="btn btn-dark float-right" onclick="changeRocketPart('thruster',true)">></button> </td>
+                <td> <button type="button" class="btn btn-dark" onclick="changeRocketPart('thruster',false)">
+                        <</button> </td> <td> <button type="button" class="btn btn-dark float-right"
+                                onclick="changeRocketPart('thruster',true)">></button> </td>
             </tr>
         </tbody>
     </table>
@@ -121,29 +134,70 @@
         var renderer = new THREE.WebGLRenderer();
         //var controls = new THREE.OrbitControls( camera, renderer.domElement );
 
-        const heads = ["RocketHead_001", "RocketHead_002", "RocketHead_003"];
+        // const heads = ["RocketHead_001", "RocketHead_002", "RocketHead_003"];
+        const heads = [ constructRocketPart("RocketHead_001","./CSS/3DObjects/RocketNose_001.obj", "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0),
+                        constructRocketPart("RocketHead_002","./CSS/3DObjects/RocketNose_001.obj", "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0), 
+                        constructRocketPart("RocketHead_003","./CSS/3DObjects/RocketNose_001.obj", "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0),
+                    ];
         let headSelected = 1;
-        loadOBJ("./CSS/3DObjects/RocketNose_001.obj", "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0, "RocketHead_001");
-        loadOBJ("./CSS/3DObjects/RocketNose_002.obj", "./CSS/3DObjects/RocketNose_002.mtl", 9.3, 8, 0, "RocketHead_002");
-        loadOBJ("./CSS/3DObjects/RocketNose_003.obj", "./CSS/3DObjects/RocketNose_003.mtl", 9.3, -8, 0, "RocketHead_003");
+        heads.forEach(rocketHead => {
+                                loadOBJ(rocketHead.ObjPath,rocketHead.MltPath, rocketHead.StartPositionY, rocketHead.StartPositionX, rocketHead.StartPositionZ, rocketHead.Name);
+                            });
 
-        const body = ["Body_001", "Body_002", "Body_003"];
+        //      OBJPath                               MLTPath                                     Y     X  Z   Name
+        // loadOBJ("./CSS/3DObjects/RocketNose_001.obj", "./CSS/3DObjects/RocketNose_001.mtl", 9.3, 0, 0, "RocketHead_001");
+        // loadOBJ("./CSS/3DObjects/RocketNose_002.obj", "./CSS/3DObjects/RocketNose_002.mtl", 9.3, 8, 0, "RocketHead_002");
+        // loadOBJ("./CSS/3DObjects/RocketNose_003.obj", "./CSS/3DObjects/RocketNose_003.mtl", 9.3, -8, 0, "RocketHead_003");
+
+        const body = [constructRocketPart("Body_001", "./CSS/3DObjects/RocketBody_001.obj", "./CSS/3DObjects/RocketBody_001.mtl", 4, 0, 0),
+                      constructRocketPart("Body_002", "./CSS/3DObjects/RocketBody_002.obj", "./CSS/3DObjects/RocketBody_002.mtl", 4, 8, 0),
+                      constructRocketPart("Body_003", "./CSS/3DObjects/RocketBody_003.obj", "./CSS/3DObjects/RocketBody_003.mtl", 4, -8, 0)
+                  ];
         let bodySelected = 1;
-        loadOBJ("./CSS/3DObjects/RocketBody_001.obj", "./CSS/3DObjects/RocketBody_001.mtl", 4, 0, 0, "Body_001");
-        loadOBJ("./CSS/3DObjects/RocketBody_002.obj", "./CSS/3DObjects/RocketBody_002.mtl", 4, 8, 0, "Body_002");
-        loadOBJ("./CSS/3DObjects/RocketBody_003.obj", "./CSS/3DObjects/RocketBody_003.mtl", 4, -8, 0, "Body_003");
+        heads.forEach(rocketBody => {
+                                loadOBJ(rocketBody.ObjPath,rocketBody.MltPath, rocketBody.StartPositionY, rocketBody.StartPositionX, rocketBody.StartPositionZ, rocketBody.Name);
+                            });
+        // loadOBJ("./CSS/3DObjects/RocketBody_001.obj", "./CSS/3DObjects/RocketBody_001.mtl", 4, 0, 0, "Body_001");
+        // loadOBJ("./CSS/3DObjects/RocketBody_002.obj", "./CSS/3DObjects/RocketBody_002.mtl", 4, 8, 0, "Body_002");
+        // loadOBJ("./CSS/3DObjects/RocketBody_003.obj", "./CSS/3DObjects/RocketBody_003.mtl", 4, -8, 0, "Body_003");
 
-        const thruster = ["Rocket_001", "Rocket_002", "Rocket_003"];
+        const thruster = [constructRocketPart("Rocket_001","./CSS/3DObjects/RocketThruster_001.obj", "./CSS/3DObjects/RocketThruster_001.mtl", 0, 0, 0),
+                          constructRocketPart("Rocket_002","./CSS/3DObjects/RocketThruster_002.obj", "./CSS/3DObjects/RocketThruster_002.mtl", 0, 8, 0), 
+                          constructRocketPart("Rocket_003", "./CSS/3DObjects/RocketThruster_003.obj", "./CSS/3DObjects/RocketThruster_003.mtl", 0, -8, 0)
+                        ];
         let thrusterSelected = 1;
-        loadOBJ("./CSS/3DObjects/RocketThruster_001.obj", "./CSS/3DObjects/RocketThruster_001.mtl", 0, 0, 0, "Rocket_001");
-        loadOBJ("./CSS/3DObjects/RocketThruster_002.obj", "./CSS/3DObjects/RocketThruster_002.mtl", 0, 8, 0, "Rocket_002");
-        loadOBJ("./CSS/3DObjects/RocketThruster_003.obj", "./CSS/3DObjects/RocketThruster_003.mtl", 0, -8, 0, "Rocket_003");
+        heads.forEach(rocketThruster => {
+                                loadOBJ(rocketThruster.ObjPath,rocketThruster.MltPath, rocketThruster.StartPositionY, rocketThruster.StartPositionX, rocketThruster.StartPositionZ, rocketThruster.Name);
+                            });
+        // loadOBJ("./CSS/3DObjects/RocketThruster_001.obj", "./CSS/3DObjects/RocketThruster_001.mtl", 0, 0, 0, "Rocket_001");
+        // loadOBJ("./CSS/3DObjects/RocketThruster_002.obj", "./CSS/3DObjects/RocketThruster_002.mtl", 0, 8, 0, "Rocket_002");
+        // loadOBJ("./CSS/3DObjects/RocketThruster_003.obj", "./CSS/3DObjects/RocketThruster_003.mtl", 0, -8, 0, "Rocket_003");
 
 
         renderer.setSize($('#webgl').innerWidth(), $('#webgl').innerHeight());
         renderer.setClearColor(0x6ee3f5, 1);
         $('#webgl').append(renderer.domElement);
 
+        /**
+         * This eliminates the redundance of having to type property names for a planet object.
+         * @param {type} myName string
+         * @param {type} myObjPath
+         * @param {type} myMtlPath
+         * @param {type} myStartPositionY
+         * @param {type} myStartPositionX
+         * @param {type} myStartPositionZ
+         * @returns {constructRocketPart.mainAnonym$0}
+         */
+        function constructRocketPart(myName, myObjPath, myMtlPath, myStartPositionY, myStartPositionX, myStartPositionZ) {
+            return {
+                Name:myName,
+                ObjPath:myObjPath,
+                MltPath:myMtlPath,
+                StartPositionY:myStartPositionY,
+                StartPositionX:myStartPositionX,
+                StartPositionZ:myStartPositionZ,
+            };
+        }
 
         function loadOBJ(objPath, mtlPath, positionY, positionX, positionZ, name) {
             const objLoader = new THREE.OBJLoader2();
@@ -166,9 +220,9 @@
             switch (rocketPart) {
                 case "head":
                     if (forward) {
-                        if (headSelected < heads.length-1) {
+                        if (headSelected < heads.length - 1) {
                             heads.forEach(rocketHead => {
-                                var screenObj = scene.getObjectByName(rocketHead);
+                                var screenObj = scene.getObjectByName(rocketHead.Name);
                                 screenObj.translateX(8);
                             });
                             headSelected++;
@@ -177,7 +231,7 @@
                         if (headSelected >= 1) {
                             headSelected--;
                             heads.forEach(rocketHead => {
-                                var screenObj = scene.getObjectByName(rocketHead);
+                                var screenObj = scene.getObjectByName(rocketHead.Name);
                                 screenObj.translateX(-8);
                             });
                         }
@@ -186,9 +240,9 @@
 
                 case "body":
                     if (forward) {
-                        if (bodySelected < body.length-1) {
+                        if (bodySelected < body.length - 1) {
                             body.forEach(rocketBody => {
-                                var screenObj = scene.getObjectByName(rocketBody);
+                                var screenObj = scene.getObjectByName(rocketBody.Name);
                                 screenObj.translateX(8);
                             });
                             bodySelected++;
@@ -197,7 +251,7 @@
                         if (bodySelected >= 1) {
                             bodySelected--;
                             body.forEach(rocketBody => {
-                                var screenObj = scene.getObjectByName(rocketBody);
+                                var screenObj = scene.getObjectByName(rocketBody.Name);
                                 screenObj.translateX(-8);
                             });
                         }
@@ -206,9 +260,9 @@
 
                 case "thruster":
                     if (forward) {
-                        if (thrusterSelected < thruster.length-1) {
+                        if (thrusterSelected < thruster.length - 1) {
                             thruster.forEach(rocketThruster => {
-                                var screenObj = scene.getObjectByName(rocketThruster);
+                                var screenObj = scene.getObjectByName(rocketThruster.Name);
                                 screenObj.translateX(8);
                             });
                             thrusterSelected++;
@@ -218,7 +272,7 @@
                         if (thrusterSelected >= 1) {
                             thrusterSelected--;
                             thruster.forEach(rocketThruster => {
-                                var screenObj = scene.getObjectByName(rocketThruster);
+                                var screenObj = scene.getObjectByName(rocketThruster.Name);
                                 screenObj.translateX(-8);
                             });
                         }
@@ -253,7 +307,6 @@
             renderer.render(scene, camera);
         }
         animate();
-
     </script>
 </body>
 
