@@ -16,6 +16,7 @@ public class RocketBuildController {
 
         MySQLAccess mySQLAccess = new MySQLAccess();
 
+        model.addAttribute("planets",mySQLAccess.GetAll3DPlanetsInformation());
         model.addAttribute("parts", mySQLAccess.GetRocketParts());
 
         return "rocketbuild";
