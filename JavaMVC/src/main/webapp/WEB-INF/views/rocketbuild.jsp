@@ -214,7 +214,7 @@
         switch (rocketPart) {
             case "head":
                 if (forward) {
-                    if (headSelected < heads.length - 1) {
+                    if (headSelected < heads.length - 2) {
                         heads.forEach(rocketHead => {
                             var screenObj = scene.getObjectByName(rocketHead.Name);
                             screenObj.translateX(8);
@@ -222,7 +222,7 @@
                         headSelected++;
                     }
                 } else {
-                    if (headSelected >= 1) {
+                    if (headSelected >= 0) {
                         headSelected--;
                         heads.forEach(rocketHead => {
                             var screenObj = scene.getObjectByName(rocketHead.Name);
@@ -234,7 +234,7 @@
 
             case "body":
                 if (forward) {
-                    if (bodySelected < body.length - 1) {
+                    if (bodySelected < body.length - 2) {
                         body.forEach(rocketBody => {
                             var screenObj = scene.getObjectByName(rocketBody.Name);
                             screenObj.translateX(8);
@@ -242,7 +242,7 @@
                         bodySelected++;
                     }
                 } else {
-                    if (bodySelected >= 1) {
+                    if (bodySelected >= 0) {
                         bodySelected--;
                         body.forEach(rocketBody => {
                             var screenObj = scene.getObjectByName(rocketBody.Name);
@@ -254,7 +254,7 @@
 
             case "thruster":
                 if (forward) {
-                    if (thrusterSelected < thruster.length - 1) {
+                    if (thrusterSelected < thruster.length - 2) {
                         thruster.forEach(rocketThruster => {
                             var screenObj = scene.getObjectByName(rocketThruster.Name);
                             screenObj.translateX(8);
@@ -263,7 +263,7 @@
                     }
                 } else {
 
-                    if (thrusterSelected >= 1) {
+                    if (thrusterSelected >= 0) {
                         thrusterSelected--;
                         thruster.forEach(rocketThruster => {
                             var screenObj = scene.getObjectByName(rocketThruster.Name);
@@ -332,7 +332,7 @@
         removeNotSelected();
 
         let position = { x : 0, y: 5, z: 15 };
-        let target = { x : 0, y: 5, z:4 };
+        let target = { x : 0, y: 5, z:3 };
         let tween = new TWEEN.Tween(position).to(target, 2000);
 
         tween.onUpdate(function(){
